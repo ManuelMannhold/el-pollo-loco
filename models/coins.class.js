@@ -14,10 +14,6 @@ class Coins {
     }
 
     animate() {
-        setInterval( () => {
-            this.playAnimation(this.IMAGES_COINS);
-            this.x = x;
-            this.y = y;
-        }, 500)
+        
     }
 }   

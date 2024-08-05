@@ -29,11 +29,13 @@ class StatusBar extends DrawableObject {
         this.width = 200;
         this.height = 60;
         this.setPercentage(100);
+
         this.loadImages(this.IMAGES_COINS);
         this.x = 40;
-        this.y = 20;
+        this.y = 40;
         this.width = 200;
         this.height = 60;
+        this.setCoin(0);
     }
 
     //setPercentage(50);
