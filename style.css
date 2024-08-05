@@ -82,7 +82,8 @@ canvas {
 
 #quit-button-game,
 #restart,
-#mute
+#mute,
+#fullscreen
 {
     border: none;
     width: 35px;
@@ -92,7 +93,8 @@ canvas {
 
 #quit-button-game:hover,
 #restart:hover,
-#mute:hover
+#mute:hover,
+#fullscreen:hover
 {
     cursor: pointer;
 }
@@ -115,6 +117,14 @@ canvas {
 
 .mute-on {
     background-image: url('./img/10_buttons/sound-off.png');
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#fullscreen {
+    background-image: url('./img/10_buttons/fullscreen.png');
     background-position: center;
     background-size: 30px;
     background-repeat: no-repeat;

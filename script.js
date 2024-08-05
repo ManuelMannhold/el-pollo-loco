@@ -19,3 +19,9 @@ function toggleSoundImage() {
 
     mute.classList.toggle('mute-on');
 }
+
+function fullscreen() {
+    let canvas = document.getElementById('canvas');
+
+    canvas.requestFullscreen();
+}
