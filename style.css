@@ -4,12 +4,122 @@
     box-sizing: border-box;
 }
 
+.d-none {
+    display: none;
+}
+
 body {
+    width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+h1 {
+    font-size: 84px;
+    color: orange;
+    text-shadow: 1px 5px 10px black;
+    filter: drop-shadow(50px 50px 0.8px black);
 }
 
 canvas {
     background-color: black;
+    position: relative;
 }
+
+#start {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('./img/9_intro_outro_screens/start/startscreen_1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}  
+
+#start-button,
+#quit-button{
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    margin-top: 10%;
+    background-color: lightgray;
+    padding: 40px 80px;
+    cursor: pointer;
+}
+
+#start-button:hover,
+#quit-button:hover
+{
+    background-color: rgb(220, 220, 220);
+}
+
+
+/* <--------------Game settings----------> */
+
+#buttons {
+    position: absolute;
+    bottom: 22%;
+    right: 20%;
+    padding: 5px 10px;
+    display: flex;
+    gap: 20px;
+}
+
+#quit-button-game {
+    background-image: url('./img/10_buttons/quit.png');
+    background-position: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#quit-button-game,
+#restart,
+#mute
+{
+    border: none;
+    width: 35px;
+    height: 40px;
+    outline: none;
+}
+
+#quit-button-game:hover,
+#restart:hover,
+#mute:hover
+{
+    cursor: pointer;
+}
+
+#restart {
+    background-image: url('./img/10_buttons/reload.png');
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.mute-off {
+    background-image: url('./img/10_buttons/sound-on.png');
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.mute-on {
+    background-image: url('./img/10_buttons/sound-off.png');
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+
+

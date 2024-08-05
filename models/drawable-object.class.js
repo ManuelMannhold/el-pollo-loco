@@ -28,7 +28,6 @@ class DrawableObject {
           this.imageCache[path] = img;
         });
       }
-
       
   drawFrame(ctx) {
     if (this instanceof Character || this instanceof Chicken) {
