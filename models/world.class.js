@@ -8,12 +8,14 @@ class World {
   backgroundImageWorld;
   statusBar = new StatusBar();
   throwableObject = [];
+  coins = [];
 
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+    this.coins.push(new Coins());
     this.draw();
     this.setworld();
     this.run();

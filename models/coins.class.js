@@ -1,6 +1,5 @@
-class Coins {
+class Coins extends World {
    world;
-   x = 100;
    y = 100;
    
     IMAGES_COINS = [
@@ -11,6 +10,9 @@ class Coins {
     constructor() {
         super().loadImage("img/8_coin/coin_1.png");
         this.loadImages(this.IMAGES_COINS);
+
+        this.x = 200 + Math.random() * 2000;
+        this.y = 50 + Math.random() * 100;
     }
 
     animate() {

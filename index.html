@@ -22,9 +22,15 @@
     <script src="./level.js/level1.js"></script>
     <script src="./js/game.js"></script>
     <script src="./script.js"></script>
+    <style>
+        @font-face {
+            font-family: 'zabras';
+            src: url('./fonts/zabars.ttf') format('truetype');
+        }
+    </style>
 </head>
 
-<body onload="init()">
+<body>
 
     <h1 id="headline">El Pollo Loco</h1>
 
@@ -32,7 +38,13 @@
 
     </canvas>
 
-    <div id="buttons">
+    <div id="steering">
+        <h2>Arrows Left / Right = Walk</h2>
+        <h2>Spacebar = Jump</h2>
+        <h2>D = Throw Bottle</h2>
+    </div>
+
+    <div id="buttons" class="d-none">
         <button id="fullscreen" onclick="fullscreen()"></button>
         <button id="quit-button-game" onclick="quitGame()"></button>
         <button id="restart" onclick="restartGame()"></button>
@@ -40,6 +52,11 @@
     </div>
 
     <h4>Item by: <a href="https://flaticon.com" target="_blank">https://flaticon.com</a></h4>
+
+    <div id="start">
+        <button id="start-button" onclick="startGame()">Start</button>
+        <button id="quit-button" onclick="exitGame()">Quit</button>
+    </div>
 </body>
 
 </html>

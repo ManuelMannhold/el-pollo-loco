@@ -50,3 +50,34 @@ document.addEventListener("keyup", (event) => {
     keyboard.D = false;
   }
 });
+
+function startGame() {
+  document.getElementById('start').classList.add('d-none');
+  initLevel();
+  init();
+}
+
+function quitGame() {
+  location.href = 'start-screen.html';
+}
+
+function exitGame() {
+  window.close;
+}
+
+function restartGame() {
+  document.getElementById('start').classList.add('d-none');
+  init();
+}
+
+function toggleSoundImage() {
+  let mute = document.getElementById('mute');
+
+  mute.classList.toggle('mute-on');
+}
+
+function fullscreen() {
+  let canvas = document.getElementById('canvas');
+
+  canvas.requestFullscreen();
+}
