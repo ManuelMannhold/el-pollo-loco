@@ -52,32 +52,30 @@ document.addEventListener("keyup", (event) => {
 });
 
 function startGame() {
-  document.getElementById('start').classList.add('d-none');
+  document.getElementById("start").classList.add("d-none");
   initLevel();
   init();
 }
 
-function quitGame() {
-  location.href = 'start-screen.html';
-}
+function quitGame() {}
 
 function exitGame() {
   window.close;
 }
 
 function restartGame() {
-  document.getElementById('start').classList.add('d-none');
-  init();
+  document.getElementById("start").classList.add("d-none");
+  initLevel();
 }
 
 function toggleSoundImage() {
-  let mute = document.getElementById('mute');
+  let mute = document.getElementById("mute");
 
-  mute.classList.toggle('mute-on');
+  mute.classList.toggle("mute-on");
 }
 
 function fullscreen() {
-  let canvas = document.getElementById('canvas');
+  let canvas = document.getElementById("canvas");
 
   canvas.requestFullscreen();
 }
