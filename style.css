@@ -5,14 +5,13 @@
 }
 
 .d-none {
-    display: none!important;
+    display: none !important;
 }
 
 body {
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('./img/pexels-background.jpg');
@@ -27,7 +26,6 @@ h1 {
     letter-spacing: 3px;
     color: orange;
     text-shadow: 1px 5px 10px black;
-    filter: drop-shadow(50px 50px 0.8px black);
 }
 
 canvas {
@@ -45,34 +43,35 @@ canvas {
 }
 
 #start {
-    width: 720px;
-    height: 480px;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('./img/9_intro_outro_screens/start/startscreen_1.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 80px;
     position: absolute;
-    top: 20%;
-}  
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
 #start-button,
-#quit-button{
+#quit-button {
     border-radius: 15px;
     outline: none;
     border: none;
-    margin-top: 10%;
+    margin-top: 15%;
     background-color: lightgray;
-    padding: 40px 80px;
+    padding: 20px 60px;
     cursor: pointer;
 }
 
 #start-button:hover,
-#quit-button:hover
-{
+#quit-button:hover {
     background-color: rgb(220, 220, 220);
 }
 
@@ -82,6 +81,13 @@ canvas {
     padding: 5px 10px;
     display: flex;
     gap: 20px;
+}
+
+.button-container {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
 }
 
 #quit-button-game {
@@ -95,8 +101,7 @@ canvas {
 #quit-button-game,
 #restart,
 #mute,
-#fullscreen
-{
+#fullscreen {
     border: none;
     width: 35px;
     height: 40px;
@@ -106,8 +111,7 @@ canvas {
 #quit-button-game:hover,
 #restart:hover,
 #mute:hover,
-#fullscreen:hover
-{
+#fullscreen:hover {
     cursor: pointer;
 }
 
@@ -143,6 +147,26 @@ canvas {
     background-color: transparent;
 }
 
+.canvas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#endscreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    overflow: hidden;
+}
+
+
 /*Smartphones-------*/
 @media only screen and (max-width: 720px) {
     canvas {
@@ -156,11 +180,8 @@ canvas {
         height: 100vh;
         width: 100%;
     }
+
     h1 {
         display: none;
     }
 }
-
-
-
-

@@ -70,7 +70,6 @@ class World {
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObject);
     this.addObjectsToMap(this.level.coins);
-    
 
     this.ctx.translate(-this.camera_x, 0);
 
