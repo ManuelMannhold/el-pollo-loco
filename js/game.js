@@ -1,6 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+gameStart = true;
+gameEnd = false;
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -52,26 +54,52 @@ document.addEventListener("keyup", (event) => {
 });
 
 function startGame() {
-  document.getElementById("start").classList.add("d-none");
+  let start = document.getElementById('start');
+  let endscreen = document.getElementById('endscreen');
+
+  gameStart = true;
+  gameEnd = false;
+
+  if (gameStart) {
+    start.classList.add('d-none');
+    endscreen.classList.add('d-none');
+  }
+
   initLevel();
   init();
+  document.getElementById('buttons').classList.remove('d-none');
+}
+
+function endGame() {
+  let start = document.getElementById('start');
+  let endscreen = document.getElementById('endscreen');
+
+  gameStart = false;
+  gameEnd = true;
+
+  if (gameEnd) {
+    start.classList.add('d-none');
+    endscreen.classList.remove('d-none');
+  }
+
+  document.getElementById('buttons').classList.add('d-none');
 }
 
 function quitGame() {}
 
 function exitGame() {
-  window.close;
+  window.ref;
 }
 
 function restartGame() {
-  document.getElementById("start").classList.add("d-none");
-  initLevel();
+  startGame();
 }
 
 function toggleSoundImage() {
   let mute = document.getElementById("mute");
 
   mute.classList.toggle("mute-on");
+
 }
 
 function fullscreen() {

@@ -9,11 +9,10 @@
 }
 
 body {
-    width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('./img/pexels-background.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -39,39 +38,40 @@ canvas {
     justify-content: space-around;
     color: orange;
     letter-spacing: 3px;
-    font-size: 16px;
+    font-size: 24px;
+    text-align: center;
+    text-shadow: 1px 2px 5px black;
+    letter-spacing: 4px;
 }
 
 #start {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('./img/9_intro_outro_screens/start/startscreen_1.png');
+    background-image: url('./img/9_intro_outro_screens/start/startscreen_1.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center right -60px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 80px;
     position: absolute;
-    top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
+    height: 480px;
 }
 
-#start-button,
-#quit-button {
+.btn
+{
     border-radius: 15px;
     outline: none;
     border: none;
-    margin-top: 15%;
-    background-color: lightgray;
-    padding: 20px 60px;
+    background-color: orange;
+    padding: 20px 80px;
     cursor: pointer;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    letter-spacing: 2px;
 }
 
-#start-button:hover,
-#quit-button:hover {
+.btn:hover{
     background-color: rgb(220, 220, 220);
 }
 
@@ -81,13 +81,19 @@ canvas {
     padding: 5px 10px;
     display: flex;
     gap: 20px;
+    position: absolute;
+    right: 10px;
 }
 
 .button-container {
-    width: 50%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 40px;
+    padding: 20px;
+}
+
+#mute-button {
+    display: flex;
 }
 
 #quit-button-game {
@@ -151,12 +157,15 @@ canvas {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    position: relative;
 }
 
 #endscreen {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    padding: 20px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -164,6 +173,11 @@ canvas {
     right: 0;
     background-color: black;
     overflow: hidden;
+    height: 480px;
+    background-image: url("./img/9_intro_outro_screens/game_over/oh\ no\ you\ lost!.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
 }
 
 
