@@ -7,6 +7,7 @@ gameEnd = false;
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
+  initLevel();
 
   console.log("My Charakter is", world.character);
 }
@@ -54,35 +55,41 @@ document.addEventListener("keyup", (event) => {
 });
 
 function startGame() {
-  let start = document.getElementById('start');
-  let endscreen = document.getElementById('endscreen');
+  let start = document.getElementById("start");
+  let endscreen = document.getElementById("endscreen");
 
   gameStart = true;
   gameEnd = false;
 
   if (gameStart) {
-    start.classList.add('d-none');
-    endscreen.classList.add('d-none');
+    start.classList.add("d-none");
+    endscreen.classList.add("d-none");
   }
 
   initLevel();
   init();
-  document.getElementById('buttons').classList.remove('d-none');
+  document.getElementById("buttons").classList.remove("d-none");
 }
 
 function endGame() {
-  let start = document.getElementById('start');
-  let endscreen = document.getElementById('endscreen');
+  let start = document.getElementById("start");
+  let endscreen = document.getElementById("endscreen");
 
   gameStart = false;
   gameEnd = true;
 
   if (gameEnd) {
-    start.classList.add('d-none');
-    endscreen.classList.remove('d-none');
+    start.classList.add("d-none");
+    endscreen.classList.remove("d-none");
   }
 
-  document.getElementById('buttons').classList.add('d-none');
+  world = null;
+  clearAllIntervals();
+  document.getElementById("buttons").classList.add("d-none");
+}
+
+function clearAllIntervals() {
+  for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
 function quitGame() {}
@@ -99,7 +106,6 @@ function toggleSoundImage() {
   let mute = document.getElementById("mute");
 
   mute.classList.toggle("mute-on");
-
 }
 
 function fullscreen() {

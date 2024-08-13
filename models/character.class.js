@@ -47,7 +47,7 @@ class Character extends MovableObject {
     "img/2_character_pepe/1_idle/idle/I-8.png",
     "img/2_character_pepe/1_idle/idle/I-9.png",
     "img/2_character_pepe/1_idle/idle/I-10.png",
-  ]
+  ];
 
   IMAGES_SLEEP = [
     "img/2_character_pepe/1_idle/long_idle/I-11.png",
@@ -60,7 +60,7 @@ class Character extends MovableObject {
     "img/2_character_pepe/1_idle/long_idle/I-18.png",
     "img/2_character_pepe/1_idle/long_idle/I-19.png",
     "img/2_character_pepe/1_idle/long_idle/I-20.png",
-  ]
+  ];
 
   height = 230;
   y = 80;
@@ -75,7 +75,7 @@ class Character extends MovableObject {
     bottom: 0,
     left: 20,
     right: 40,
-  }
+  };
 
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
@@ -154,19 +154,20 @@ class Character extends MovableObject {
   // }
 
   stopAnimation() {
-    setInterval( () => {
+    setInterval(() => {
       let timePassed = new Date().getTime() - this.lastAction;
       timePassed = timePassed / 1000;
-      if(timePassed < 10) {
-        this.playAnimation(this.IMAGES_IDLE)
+      if (timePassed < 10) {
+        this.playAnimation(this.IMAGES_IDLE);
       }
       if (timePassed > 5) {
-        this.playAnimation(this.IMAGES_SLEEP);
+        this.playAnimation(this.IMAGES_IDLE);
         this.snore_sound.play();
+      } else if (timePassed > 10) {
+        this.playAnimation(this.IMAGES_SLEEP);
       } else {
         this.snore_sound.pause();
       }
-    }, 5000)
-   
+    }, 5000);
   }
 }
