@@ -65,7 +65,7 @@ function startGame() {
     start.classList.add("d-none");
     endscreen.classList.add("d-none");
   }
-
+  world = null;
   initLevel();
   init();
   document.getElementById("buttons").classList.remove("d-none");
@@ -83,7 +83,6 @@ function endGame() {
     endscreen.classList.remove("d-none");
   }
 
-  world = null;
   clearAllIntervals();
   document.getElementById("buttons").classList.add("d-none");
 }
@@ -109,7 +108,7 @@ function toggleSoundImage() {
 }
 
 function fullscreen() {
-  let canvas = document.getElementById("canvas");
+  let canvas = document.getElementById("canvas-container");
 
   canvas.requestFullscreen();
 }

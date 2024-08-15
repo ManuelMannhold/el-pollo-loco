@@ -170,4 +170,10 @@ class Character extends MovableObject {
       }
     }, 5000);
   }
+
+  grabBottle() {
+    if (this.isColliding(Bottle)) {
+      Bottle.splice(1);
+    }
+  }
 }

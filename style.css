@@ -58,8 +58,7 @@ canvas {
     height: 480px;
 }
 
-.btn
-{
+.btn {
     border-radius: 15px;
     outline: none;
     border: none;
@@ -71,7 +70,7 @@ canvas {
     letter-spacing: 2px;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: rgb(220, 220, 220);
 }
 
@@ -153,7 +152,7 @@ canvas {
     background-color: transparent;
 }
 
-.canvas-container {
+#canvas-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
