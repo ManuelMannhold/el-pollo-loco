@@ -1,4 +1,22 @@
 class Character extends MovableObject {
+  
+  height = 230;
+  y = 210;
+  world;
+  speed = 10;
+  walking_sound = new Audio("audio/pepe_walk.mp3");
+  snore_sound = new Audio("audio/snore.mp3");
+  animationFrame = 0;
+  lastAction = 0;
+  beginHurt = false;
+  isSeep = false;
+  offset = {
+    top: 104,
+    bottom: 0,
+    left: 20,
+    right: 40,
+  };
+  
   IMAGES_WALKING = [
     "img/2_character_pepe/2_walk/W-21.png",
     "img/2_character_pepe/2_walk/W-22.png",
@@ -62,21 +80,6 @@ class Character extends MovableObject {
     "img/2_character_pepe/1_idle/long_idle/I-20.png",
   ];
 
-  height = 230;
-  y = 80;
-  world;
-  speed = 10;
-  walking_sound = new Audio("audio/pepe_walk.mp3");
-  snore_sound = new Audio("audio/snore.mp3");
-  animationFrame = 0;
-  lastAction = 0;
-  offset = {
-    top: 104,
-    bottom: 0,
-    left: 20,
-    right: 40,
-  };
-
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
     this.loadImages(this.IMAGES_WALKING);
@@ -101,6 +104,7 @@ class Character extends MovableObject {
         this.walking_sound.play();
         this.walking_sound.volume = 1;
         isMoving = true;
+        this.beginHurt = false;
       }
       if (this.world.keyboard.LEFT && this.x > 0) {
         this.moveLeft();
@@ -108,10 +112,12 @@ class Character extends MovableObject {
         this.walking_sound.play();
         this.walking_sound.volume = 1;
         isMoving = true;
+        this.beginHurt = false;
       }
 
       if (this.world.keyboard.SPACE && !this.isAboveGround()) {
         this.jump();
+        this.beginHurt = false;
       }
       this.world.camera_x = -this.x + 100;
 
@@ -130,7 +136,7 @@ class Character extends MovableObject {
           endGame();
         }, 1000);
       } else if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_HURT);
+        ifIsHurt()
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
@@ -141,6 +147,11 @@ class Character extends MovableObject {
         }
       }
     }, 400);
+  }
+
+  ifIsHurt() {
+    this.beginHurt = true;
+    this.playAnimation(this.IMAGES_HURT);
   }
 
   // playAnimationWalk(images) {
@@ -155,20 +166,8 @@ class Character extends MovableObject {
 
   stopAnimation() {
     setInterval(() => {
-      let timePassed = new Date().getTime() - this.lastAction;
-      timePassed = timePassed / 1000;
-      if (timePassed < 10) {
-        this.playAnimation(this.IMAGES_IDLE);
-      }
-      if (timePassed > 5) {
-        this.playAnimation(this.IMAGES_IDLE);
-        this.snore_sound.play();
-      } else if (timePassed > 10) {
-        this.playAnimation(this.IMAGES_SLEEP);
-      } else {
-        this.snore_sound.pause();
-      }
-    }, 5000);
+      this.ifTimepassedForIdle();
+    }, 1000);
   }
 
   grabBottle() {
@@ -176,4 +175,21 @@ class Character extends MovableObject {
       Bottle.splice(1);
     }
   }
-}
+
+  ifTimepassedForIdle() {
+    let timePassed = new Date().getTime() - this.lastAction;
+      timePassed = timePassed / 1000;
+
+      if (timePassed > 5 && this.isMoving) {
+        this.playAnimation(this.IMAGES_IDLE);
+      } else if(timePassed > 10) {
+        this.playAnimation(this.IMAGES_SLEEP);
+        this.snore_sound.play();
+        !this.isMoving;
+      } else {
+        this.isMoving;
+        this.snore_sound.pause();
+      }
+    }
+  }
+

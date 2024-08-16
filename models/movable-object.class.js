@@ -26,7 +26,7 @@ class MovableObject extends DrawableObject {
       // ThrowableObjects should always fall
       return true;
     } else {
-      return this.y < 180;
+      return this.y < 210;
     }
   }
 
@@ -49,11 +49,12 @@ class MovableObject extends DrawableObject {
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
     timepassed = timepassed / 1000; // Difference in s
+
     return timepassed < 1;
   }
 
   isDead() {
-    return this.energy == 0;
+    return this.energy <= 0;
   }
 
   moveRight() {

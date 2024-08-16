@@ -19,7 +19,6 @@ class Bottle extends MovableObject {
   constructor() {
     super().loadImage("img/6_salsa_bottle/1_salsa_bottle_on_ground.png");
     this.loadImages(this.IMAGES_BOTTLE);
-
     this.x = 200 + Math.random() * 2000;
     this.animate();
   }
@@ -29,4 +28,17 @@ class Bottle extends MovableObject {
       this.playAnimation(this.IMAGES_BOTTLE);
     }, 500);
   }
-}
+
+    spliceBottle(index){
+      level1.bottles.splice(index, 1);
+    }
+
+    getIndexBottles(obj) {
+      for (let i = 0; i < level1.bottles.length; i++) {
+        if (level1.bottles[i].x == obj.x) {
+          console.log(i);
+          return i;
+        }
+      }
+    }
+  }

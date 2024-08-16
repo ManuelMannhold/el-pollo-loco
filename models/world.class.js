@@ -11,6 +11,7 @@ class World {
   statusBarCoins = new StatusBarCoins();
   throwableObject = [];
   sound = false;
+  bottles = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -39,6 +40,13 @@ class World {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
       }
+    });
+  }
+
+  checkCollisionBottle() {
+    this.level.bottles.forEach((bottles) => {
+      this.bottles++;
+      this.statusBarBottle.setBottle(this.bottles);
     });
   }
 
