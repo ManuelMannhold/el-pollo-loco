@@ -39,6 +39,8 @@ class StatusBarCoins extends DrawableObject {
       return 4;
     } else if (this.coin == 5) {
       return 5;
+    } else if (this.coin > 5) {
+      return 5;
     }
   }
 }

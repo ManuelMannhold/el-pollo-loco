@@ -11,7 +11,9 @@ class World {
   statusBarCoins = new StatusBarCoins();
   throwableObject = [];
   sound = false;
+  bottle = false;
   bottles = 0;
+  coins = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -30,12 +32,39 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
-    }, 500);
+    }, 200);
   }
 
   checkCollisions() {
     // check collision
-    this.level.enemies.forEach((enemy) => {
+    this.forEachEnemy();
+    this.forEachBottles();
+    this.forEachCoins();
+  }
+
+  forEachCoins() {
+    this.level.coins.forEach((coins, index) => {
+      if (this.character.isColliding(coins)) {
+        this.coins++;
+        this.statusBarCoins.setCoin(this.coins);
+        this.level.coins.splice(index, 1);
+      }
+    });
+  }
+
+  forEachBottles() {
+    this.level.bottles.forEach((bottles, index) => {
+      if (this.character.isColliding(bottles) && this.bottles < 5) {
+        this.bottles++;
+        this.statusBarBottle.setBottle(this.bottles);
+        this.bottle = true;
+        this.level.bottles.splice(index, 1);
+      }
+    });
+  }
+
+  forEachEnemy() {
+    this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
@@ -43,20 +72,15 @@ class World {
     });
   }
 
-  checkCollisionBottle() {
-    this.level.bottles.forEach((bottles) => {
-      this.bottles++;
-      this.statusBarBottle.setBottle(this.bottles);
-    });
-  }
-
   checkThrowObjects() {
-    if (this.keyboard.D) {
+    if (this.keyboard.D && this.bottles > 0) {
       let bottle = new ThrowableObject(
-        this.character.x + 100,
+        this.character.x + 40,
         this.character.y + 100
       );
       this.throwableObject.push(bottle);
+      this.bottles--;
+      this.statusBarBottle.setBottle(this.bottles);
     }
   }
 

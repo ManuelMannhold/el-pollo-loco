@@ -39,6 +39,8 @@ class StatusBarBottle extends DrawableObject {
       return 4;
     } else if (this.bottle == 5) {
       return 5;
+    } else if (this.bottle > 5) {
+      return 5;
     }
   }
 }

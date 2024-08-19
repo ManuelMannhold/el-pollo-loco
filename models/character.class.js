@@ -1,5 +1,4 @@
 class Character extends MovableObject {
-  
   height = 230;
   y = 210;
   world;
@@ -9,14 +8,15 @@ class Character extends MovableObject {
   animationFrame = 0;
   lastAction = 0;
   beginHurt = false;
-  isSeep = false;
+  isSleep = false;
+  bottle = new Bottle();
   offset = {
     top: 104,
     bottom: 0,
     left: 20,
     right: 40,
   };
-  
+
   IMAGES_WALKING = [
     "img/2_character_pepe/2_walk/W-21.png",
     "img/2_character_pepe/2_walk/W-22.png",
@@ -136,7 +136,7 @@ class Character extends MovableObject {
           endGame();
         }, 1000);
       } else if (this.isHurt()) {
-        ifIsHurt()
+        ifIsHurt();
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
@@ -154,42 +154,26 @@ class Character extends MovableObject {
     this.playAnimation(this.IMAGES_HURT);
   }
 
-  // playAnimationWalk(images) {
-  //   this.animationFrame++;
-  //   if (this.animationFrame % 4 === 0) {
-  //     let i = this.currentImage % images.length;
-  //     let path = images[i];
-  //     this.img = this.imageCache[path];
-  //     this.currentImage++;
-  //   }
-  // }
-
   stopAnimation() {
     setInterval(() => {
       this.ifTimepassedForIdle();
-    }, 1000);
-  }
-
-  grabBottle() {
-    if (this.isColliding(Bottle)) {
-      Bottle.splice(1);
-    }
+    }, 5000);
   }
 
   ifTimepassedForIdle() {
     let timePassed = new Date().getTime() - this.lastAction;
-      timePassed = timePassed / 1000;
+    timePassed = timePassed / 1000;
 
-      if (timePassed > 5 && this.isMoving) {
-        this.playAnimation(this.IMAGES_IDLE);
-      } else if(timePassed > 10) {
-        this.playAnimation(this.IMAGES_SLEEP);
-        this.snore_sound.play();
-        !this.isMoving;
-      } else {
-        this.isMoving;
-        this.snore_sound.pause();
-      }
+    if (timePassed > 5 && this.isMoving) {
+      this.playAnimation(this.IMAGES_IDLE);
+    } else if (timePassed > 10 || this.isSleep) {
+      this.playAnimation(this.IMAGES_SLEEP);
+      this.snore_sound.play();
+      !this.isMoving;
+    } else {
+      this.isMoving;
+      !this.isSleep;
+      this.snore_sound.pause();
     }
   }
-
+}

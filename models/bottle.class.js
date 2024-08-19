@@ -3,17 +3,16 @@ class Bottle extends MovableObject {
   bottles = [];
   width = 60;
   height = 80;
+  offset = {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  };
 
   IMAGES_BOTTLE = [
     "img/6_salsa_bottle/1_salsa_bottle_on_ground.png",
     "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
-  ];
-
-  IMAGES_BOTTLE_ROTATE = [
-    "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
-    "img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png",
-    "img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png",
-    "img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png",
   ];
 
   constructor() {
@@ -27,18 +26,15 @@ class Bottle extends MovableObject {
     setInterval(() => {
       this.playAnimation(this.IMAGES_BOTTLE);
     }, 500);
+    1;
   }
 
-    spliceBottle(index){
-      level1.bottles.splice(index, 1);
-    }
-
-    getIndexBottles(obj) {
-      for (let i = 0; i < level1.bottles.length; i++) {
-        if (level1.bottles[i].x == obj.x) {
-          console.log(i);
-          return i;
-        }
+  getIndexBottles(obj) {
+    for (let i = 0; i < level1.bottles.length; i++) {
+      if (level1.bottles[i].x == obj.x) {
+        console.log(i);
+        return i;
       }
     }
   }
+}
