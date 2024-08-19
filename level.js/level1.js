@@ -53,7 +53,7 @@ function initLevel() {
     [new Coins(), new Coins(), new Coins(), new Coins(), new Coins()],
     [
       new Chicken(),
-      new Chicken(),
+      // new Chicken(),
       // new Chicken(),
       // new Chicken(),
       // new ChickenSmall(),

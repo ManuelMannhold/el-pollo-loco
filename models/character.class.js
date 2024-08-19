@@ -7,7 +7,7 @@ class Character extends MovableObject {
   snore_sound = new Audio("audio/snore.mp3");
   animationFrame = 0;
   lastAction = 0;
-  beginHurt = false;
+  endHurt = false;
   isSleep = false;
   bottle = new Bottle();
   offset = {
@@ -81,7 +81,7 @@ class Character extends MovableObject {
   ];
 
   constructor() {
-    super().loadImage("img/2_character_pepe/2_walk/W-21.png");
+    super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png");
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_JUMPING);
     this.loadImages(this.IMAGES_DEAD);
@@ -104,7 +104,7 @@ class Character extends MovableObject {
         this.walking_sound.play();
         this.walking_sound.volume = 1;
         isMoving = true;
-        this.beginHurt = false;
+        this.endHurt = false;
       }
       if (this.world.keyboard.LEFT && this.x > 0) {
         this.moveLeft();
@@ -112,12 +112,12 @@ class Character extends MovableObject {
         this.walking_sound.play();
         this.walking_sound.volume = 1;
         isMoving = true;
-        this.beginHurt = false;
+        this.endHurt = false;
       }
 
       if (this.world.keyboard.SPACE && !this.isAboveGround()) {
         this.jump();
-        this.beginHurt = false;
+        this.endHurt = false;
       }
       this.world.camera_x = -this.x + 100;
 
@@ -136,7 +136,7 @@ class Character extends MovableObject {
           endGame();
         }, 1000);
       } else if (this.isHurt()) {
-        ifIsHurt();
+        this.ifIsHurt();
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
@@ -150,12 +150,13 @@ class Character extends MovableObject {
   }
 
   ifIsHurt() {
-    this.beginHurt = true;
     this.playAnimation(this.IMAGES_HURT);
+    this.endHurt = true;
   }
 
   stopAnimation() {
     setInterval(() => {
+      this.playAnimation(this.IMAGES_IDLE);
       this.ifTimepassedForIdle();
     }, 5000);
   }
@@ -164,9 +165,7 @@ class Character extends MovableObject {
     let timePassed = new Date().getTime() - this.lastAction;
     timePassed = timePassed / 1000;
 
-    if (timePassed > 5 && this.isMoving) {
-      this.playAnimation(this.IMAGES_IDLE);
-    } else if (timePassed > 10 || this.isSleep) {
+    if ((timePassed > 5) && (this.isMoving)) {
       this.playAnimation(this.IMAGES_SLEEP);
       this.snore_sound.play();
       !this.isMoving;
