@@ -98,7 +98,9 @@ function exitGame() {
 }
 
 function restartGame() {
-  startGame();
+  world = null;
+  initLevel();
+  init();
 }
 
 function toggleSoundImage() {

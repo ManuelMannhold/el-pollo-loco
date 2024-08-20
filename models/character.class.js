@@ -157,20 +157,20 @@ class Character extends MovableObject {
   stopAnimation() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_IDLE);
-      this.ifTimepassedForIdle();
-    }, 5000);
+      this.ifTimepassedForSleep();
+    }, 4000);
   }
 
-  ifTimepassedForIdle() {
+  ifTimepassedForSleep() {
     let timePassed = new Date().getTime() - this.lastAction;
     timePassed = timePassed / 1000;
 
     if ((timePassed > 5) && (this.isMoving)) {
       this.playAnimation(this.IMAGES_SLEEP);
       this.snore_sound.play();
-      !this.isMoving;
-    } else {
       this.isMoving;
+    } else {
+      !this.isMoving;
       !this.isSleep;
       this.snore_sound.pause();
     }

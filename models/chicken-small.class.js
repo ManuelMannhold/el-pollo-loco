@@ -2,6 +2,7 @@ class ChickenSmall extends MovableObject {
   width = 60;
   height = 50;
   y = 380;
+  energy = true;
   isKilled = false;
 
   IMAGES_WALKING_SMALL = [
@@ -32,12 +33,17 @@ class ChickenSmall extends MovableObject {
     setInterval(() => {
       if (this.energy && this.isKilled) {
         this.energy = false;
-        this.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
+        this.isKilled = true;
+        this.loadImage("img/3_enemies_chicken/chicken_small/2_dead/dead.png");
         setTimeout(() => {
           this.spliceChicken(this.getIndexChicken(this));
         }, 1000);
       } else if (!this.isKilled) this.playAnimation(this.IMAGES_WALKING_SMALL);
     }, 200);
+  }
+
+  spliceChicken(i) {
+    level1.enemies.splice(i, 1);
   }
 
   getIndexChicken(obj) {

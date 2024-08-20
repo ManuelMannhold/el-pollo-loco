@@ -9,6 +9,7 @@ class World {
   statusBar = new StatusBar();
   statusBarBottle = new StatusBarBottle();
   statusBarCoins = new StatusBarCoins();
+  statusBarBoss = new StatusbarEndboss();
   throwableObject = [];
   sound = false;
   bottle = false;
@@ -64,10 +65,15 @@ class World {
   }
 
   forEachEnemy() {
-    this.level.enemies.forEach((enemy, index) => {
+    this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
-        this.character.hit();
-        this.statusBar.setPercentage(this.character.energy);
+        if (this.character.speedY < 0 && this.character.isAboveGround()) {
+          enemy.isKilled = true;
+        }
+        else if (!enemy.isKilled) {
+          this.character.hit();
+          this.statusBar.setPercentage(this.character.energy);
+        }
       }
     });
   }
@@ -76,7 +82,7 @@ class World {
     if (this.keyboard.D && this.bottles > 0) {
       let bottle = new ThrowableObject(
         this.character.x + 40,
-        this.character.y + 100 
+        this.character.y + 100
       );
       this.throwableObject.push(bottle);
       this.bottles--;
@@ -102,6 +108,7 @@ class World {
     this.addToMap(this.statusBar);
     this.addToMap(this.statusBarCoins);
     this.addToMap(this.statusBarBottle);
+    this.addToMap(this.statusBarBoss);
     this.ctx.translate(this.camera_x, 0); // Forwards
 
     this.ctx.translate(-this.camera_x, 0);
