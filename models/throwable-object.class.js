@@ -10,9 +10,8 @@ class ThrowableObject extends MovableObject {
   ];
 
   constructor(x, y) {
-    super().loadImage(
-      "img/6_salsa_bottle/salsa_bottle.png"
-    );
+    super().loadImage("img/6_salsa_bottle/salsa_bottle.png");
+    this.loadImages(this.IMAGES_BOTTLE_ROTATE);
     this.x = x;
     this.y = y;
     this.height = 70;
@@ -32,6 +31,6 @@ class ThrowableObject extends MovableObject {
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
-    }, 20);
+    }, 80);
   }
 }

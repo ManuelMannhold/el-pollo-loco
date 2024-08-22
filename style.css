@@ -205,3 +205,15 @@ canvas {
         display: none;
     }
 }
+
+@media (orientation: landscape) {
+    #landscape {
+        display: block;
+    }
+}
+
+@media (orientation: portrait) {
+    #landscape {
+        flex-direction: column;
+    }
+}

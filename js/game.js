@@ -99,7 +99,6 @@ function exitGame() {
 
 function restartGame() {
   world = null;
-  initLevel();
   init();
 }
 

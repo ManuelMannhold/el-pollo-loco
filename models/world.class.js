@@ -33,11 +33,10 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
-    }, 200);
+    }, 20);
   }
 
   checkCollisions() {
-    // check collision
     this.forEachEnemy();
     this.forEachBottles();
     this.forEachCoins();
@@ -69,8 +68,7 @@ class World {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
           enemy.isKilled = true;
-        }
-        else if (!enemy.isKilled) {
+        } else if (!enemy.isKilled) {
           this.character.hit();
           this.statusBar.setPercentage(this.character.energy);
         }

@@ -7,6 +7,7 @@ class Character extends MovableObject {
   snore_sound = new Audio("audio/snore.mp3");
   animationFrame = 0;
   lastAction = 0;
+  isJump = false;
   endHurt = false;
   isSleep = false;
   bottle = new Bottle();
@@ -106,6 +107,7 @@ class Character extends MovableObject {
         isMoving = true;
         this.endHurt = false;
       }
+
       if (this.world.keyboard.LEFT && this.x > 0) {
         this.moveLeft();
         this.otherDirection = true;
@@ -135,8 +137,12 @@ class Character extends MovableObject {
         setTimeout(() => {
           endGame();
         }, 1000);
-      } else if (this.isHurt()) {
-        this.ifIsHurt();
+
+        setInterval(() => {
+          if (this.isHurt()) {
+            this.ifIsHurt();
+          }
+        }, 500);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
@@ -165,7 +171,7 @@ class Character extends MovableObject {
     let timePassed = new Date().getTime() - this.lastAction;
     timePassed = timePassed / 1000;
 
-    if ((timePassed > 5) && (this.isMoving)) {
+    if (timePassed > 5 && this.isMoving) {
       this.playAnimation(this.IMAGES_SLEEP);
       this.snore_sound.play();
       this.isMoving;
