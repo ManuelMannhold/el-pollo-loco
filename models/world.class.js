@@ -32,8 +32,10 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
+    }, 10);
+    setInterval(() => {
       this.checkThrowObjects();
-    }, 20);
+    }, 150);
   }
 
   checkCollisions() {
@@ -85,6 +87,28 @@ class World {
       this.throwableObject.push(bottle);
       this.bottles--;
       this.statusBarBottle.setBottle(this.bottles);
+      setInterval(() => {
+        this.checkCollisionEndbossBottle(bottle);
+      }, 500);
+      setInterval(() => {
+        this.checkCollisionEnemyBottle(bottle);
+      }, 10);
+    }
+  }
+
+  checkCollisionEnemyBottle(bottle) {
+    this.level.enemies.forEach((enemy) => {
+      if (bottle.isColliding(enemy)) {
+        enemy.isKilled = true;
+      }
+    });
+  }
+
+  checkCollisionEndbossBottle(bottle, index) {
+    if (this.level.endboss.isColliding(bottle)) {
+      this.throwableObject.splice(index, 1);
+      this.level.endboss.energy = this.endboss.energy - 20;
+      this.statusBarBoss.setBoss(this.level.endboss.energy);
     }
   }
 

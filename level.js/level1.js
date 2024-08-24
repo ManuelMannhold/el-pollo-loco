@@ -60,8 +60,8 @@ function initLevel() {
       // new ChickenSmall(),
       // new ChickenSmall(),
       // new ChickenSmall(),
-      // new Endboss(),
     ],
+    [new Endboss()],
     [
       new Bottle(),
       new Bottle(),

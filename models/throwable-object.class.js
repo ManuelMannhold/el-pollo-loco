@@ -31,6 +31,6 @@ class ThrowableObject extends MovableObject {
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
-    }, 80);
+    }, 100);
   }
 }
