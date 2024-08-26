@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 gameStart = true;
 gameEnd = false;
+let backgroundAudio = new Audio("audio/background-music.mp3");
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -65,6 +66,7 @@ function startGame() {
     start.classList.add("d-none");
     endscreen.classList.add("d-none");
   }
+  backgroundAudio.play();
   world = null;
   initLevel();
   init();
@@ -104,8 +106,13 @@ function restartGame() {
 
 function toggleSoundImage() {
   let mute = document.getElementById("mute");
+    mute.classList.toggle("mute-on");
 
-  mute.classList.toggle("mute-on");
+  if(mute.classList[1]) {
+    backgroundAudio.volume = 0;
+  } else if(mute.classList[0]) {
+    backgroundAudio.volume = 1;;
+  }
 }
 
 function fullscreen() {
@@ -113,3 +120,4 @@ function fullscreen() {
 
   canvas.requestFullscreen();
 }
+

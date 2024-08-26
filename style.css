@@ -88,7 +88,7 @@ canvas {
     display: flex;
     gap: 20px;
     position: absolute;
-    right: 10px;
+    right: 36%;
 }
 
 .button-container {
@@ -186,6 +186,19 @@ canvas {
     background-size: cover;
 }
 
+#landscape {
+    background-color: rgba(255, 255, 255, 0.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 60px;
+    text-align: center;
+    align-content: center;
+    color: black;
+}
+
 
 /*Smartphones-------*/
 @media only screen and (max-width: 720px) {
@@ -208,12 +221,12 @@ canvas {
 
 @media (orientation: landscape) {
     #landscape {
-        display: block;
+        display: none;
     }
 }
 
 @media (orientation: portrait) {
     #landscape {
-        flex-direction: column;
+        display: block !important;
     }
 }
