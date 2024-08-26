@@ -62,7 +62,7 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_ATTACK);
     this.x = 4000;
-    this.speed = 0.15 + Math.random() * 0.5;
+    this.speed = 0.85 + Math.random() * 0.5;
     this.animate();
   }
 
@@ -74,7 +74,27 @@ class Endboss extends MovableObject {
     setInterval(() => {
       this.moveEndboss();
     }, 1000 / 60);
+
+    setInterval(() => {
+      this.attackCharacter();
+    }, 200);
   }
+
+  attackCharacter(){
+    if(this.attack){
+        this.attackCount++;
+        this.speed = 3;
+        this.moveLeft();
+        this.otherDirection = false;
+        if(this.attackCount > 200){
+            this.attackCount = 0;
+            this.count = 200;
+            this.attack = 0;
+        }         
+    }
+    else
+        this.speed = 1.5;
+}
 
   moveEndboss() {
     if (this.energy > 0 && !this.attack) {

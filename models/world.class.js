@@ -101,13 +101,16 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (bottle.isColliding(enemy)) {
         enemy.isKilled = true;
+        this.throwableObject.splice(-1, 1)
       }
     });
   }
 
   checkCollisionEndbossBottle(bottle) {
     if (this.endboss.isColliding(bottle)) {
+      this.throwableObject.splice(-1, 1)
       this.endboss.energy = this.endboss.energy - 20;
+      this.endboss.bottleHurt = true;
       this.statusBarBoss.setBoss(this.endboss.energy);
     }
   }
