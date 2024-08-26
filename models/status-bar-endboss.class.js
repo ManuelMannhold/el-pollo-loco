@@ -26,17 +26,17 @@ class StatusbarEndboss extends DrawableObject {
     }
 
     endbossIndex() {
-        if (this.energy == 100) {
+        if (this.energy >= 100) {
             return 5;
-        } else if (this.coin == 80) {
+        } else if (this.energy > 80) {
             return 4;
-        } else if (this.coin == 60) {
+        } else if (this.energy > 60) {
             return 3;
-        } else if (this.coin == 40) {
+        } else if (this.energy > 40) {
             return 2;
-        } else if (this.coin == 20) {
+        } else if (this.energy > 20) {
             return 1;
-        } else if (this.coin == 0) {
+        } else {
             return 0;
         }
     }

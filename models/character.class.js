@@ -142,7 +142,7 @@ class Character extends MovableObject {
           if (this.isHurt()) {
             this.ifIsHurt();
           }
-        }, 500);
+        }, 1500);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
@@ -152,7 +152,7 @@ class Character extends MovableObject {
           this.stopAnimation();
         }
       }
-    }, 150);
+    }, 2000);
   }
 
   ifIsHurt() {
@@ -174,9 +174,8 @@ class Character extends MovableObject {
     if (timePassed > 5 && this.isMoving) {
       this.playAnimation(this.IMAGES_SLEEP);
       this.snore_sound.play();
-      this.isMoving;
+      this.isSleep = true;
     } else {
-      !this.isMoving;
       !this.isSleep;
       this.snore_sound.pause();
     }

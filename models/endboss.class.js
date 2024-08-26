@@ -43,6 +43,10 @@ class Endboss extends MovableObject {
   height = 500;
   y = -30;
   energy = 100;
+  bottleHurt = false;
+  attack = false;
+  attackCount = 0;
+  count = false;
   offset = {
     top: 64,
     bottom: 16,
@@ -55,21 +59,52 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_ALERT);
     this.loadImages(this.IMAGES_DEAD);
     this.loadImages(this.IMAGES_WALKING);
+    this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_ATTACK);
-    this.x = 2200;
+    this.x = 4000;
     this.speed = 0.15 + Math.random() * 0.5;
     this.animate();
   }
 
   animate() {
     setInterval(() => {
-      this.playAnimation(this.IMAGES_ALERT);
+      this.checkEnergy();
     }, 200);
 
-    if (this.energy <= 0) {
-      setInterval(() => {
-        this.playAnimation(this.IMAGES_DEAD);
-      }, 300);
+    setInterval(() => {
+      this.moveEndboss();
+    }, 1000 / 60);
+  }
+
+  moveEndboss() {
+    if (this.energy > 0 && !this.attack) {
+      if (this.count < 200) {
+        this.count++;
+        this.moveLeft();
+        this.otherDirection = false;
+      } else if (this.count < 400) {
+        this.count++;
+        this.moveRight();
+        this.otherDirection = true;
+      } else
+        this.count = 0;
     }
+  }
+
+  checkEnergy() {
+    if (this.bottleHurt) {
+      this.attack = true;
+      this.playAnimation(this.IMAGES_HURT);
+      setTimeout(() => { }, 1000);
+      this.bottleHurt = false;
+    }
+    else if (this.attack)
+      this.playAnimation(this.IMAGES_ATTACK);
+    else if (this.energy <= 0)
+      this.playAnimation(this.IMAGES_DEAD);
+    else if (this.energy < 40)
+      this.playAnimation(this.IMAGES_ALERT);
+    else
+      this.playAnimation(this.IMAGES_WALKING);
   }
 }

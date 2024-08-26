@@ -10,6 +10,7 @@ class World {
   statusBarBottle = new StatusBarBottle();
   statusBarCoins = new StatusBarCoins();
   statusBarBoss = new StatusbarEndboss();
+  endboss = new Endboss();
   throwableObject = [];
   sound = false;
   bottle = false;
@@ -104,11 +105,10 @@ class World {
     });
   }
 
-  checkCollisionEndbossBottle(bottle, index) {
-    if (this.level.endboss.isColliding(bottle)) {
-      this.throwableObject.splice(index, 1);
-      this.level.endboss.energy = this.endboss.energy - 20;
-      this.statusBarBoss.setBoss(this.level.endboss.energy);
+  checkCollisionEndbossBottle(bottle) {
+    if (this.endboss.isColliding(bottle)) {
+      this.endboss.energy = this.endboss.energy - 20;
+      this.statusBarBoss.setBoss(this.endboss.energy);
     }
   }
 
@@ -120,6 +120,7 @@ class World {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.throwableObject);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottles);
