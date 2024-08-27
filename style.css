@@ -9,15 +9,17 @@
 }
 
 body {
-    height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+    background-color: lightgray;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('./img/pexels-background.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    font-family: 'zabras', Arial, Helvetica, sans-serif;
+    height: 100vh;
 }
 
 h1 {
@@ -59,9 +61,8 @@ canvas {
     flex-direction: column;
     gap: 80px;
     position: absolute;
-    left: 0;
-    right: 0;
     height: 480px;
+    width: 720px;
 }
 
 .btn {
@@ -173,12 +174,9 @@ canvas {
     align-items: center;
     padding: 20px;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     background-color: black;
     overflow: hidden;
+    width: 720px;
     height: 480px;
     background-image: url("./img/9_intro_outro_screens/game_over/oh\ no\ you\ lost!.png");
     background-repeat: no-repeat;
@@ -197,6 +195,16 @@ canvas {
     text-align: center;
     align-content: center;
     color: black;
+}
+
+.full-image-background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    
 }
 
 
@@ -223,10 +231,17 @@ canvas {
     #landscape {
         display: none;
     }
+    #steering {
+        display: none;
+    }
 }
 
 @media (orientation: portrait) {
     #landscape {
         display: block !important;
     }
+    #steering {
+        display: none;
+    }
+    
 }

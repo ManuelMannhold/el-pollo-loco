@@ -37,39 +37,37 @@
 </head>
 
 <body>
-    <div id="canvas-container">
-        <canvas width="720" height="480" id="canvas">
-        </canvas>
-        <div id="buttons" class="d-none">
-            <button id="fullscreen" onclick="fullscreen()"></button>
-            <button id="quit-button-game" onclick="quitGame()"></button>
-            <button id="restart" onclick="restartGame()"></button>
-            <button id="mute" class="mute-off" onclick="toggleSoundImage()"></button>
-        </div>
-        <div id="steering">
-            <h2>Arrows Left / Right <br> = <br> <span>Walk</span></h2>
-            <h2>Spacebar <br> = <br> <span>Jump</span></h2>
-            <h2>D <br> = <br> <span>Throw Bottle</span></h2>
-        </div>
-        <div id="start">
-            <div class="button-container">
-                <button id="start-button" class="btn" onclick="startGame()">Start</button>
-                <button id="quit-button" class="btn" onclick="exitGame()">Quit</button>
+            <canvas id="canvas" width="720" height="480">
+            </canvas>
+            <div id="buttons" class="d-none">
+                <button id="fullscreen" onclick="fullscreen()"></button>
+                <button id="quit-button-game" onclick="quitGame()"></button>
+                <button id="restart" onclick="restartGame()"></button>
+                <button id="mute" class="mute-off" onclick="toggleSoundImage()"></button>
             </div>
-        </div>
-        <div id="endscreen" class="d-none">
-            <button class="btn" id="start-button" onclick="startGame()">Restart</button>
-            <button class="btn">Back to Menu</button>
-        </div>
-        <div id="winscreen"></div>
-    </div>
+            <div id="steering">
+                <h2>Arrows Left / Right <br> = <br> <span>Walk</span></h2>
+                <h2>Spacebar <br> = <br> <span>Jump</span></h2>
+                <h2>D <br> = <br> <span>Throw Bottle</span></h2>
+            </div>
+            <div id="start">
+                <div class="button-container">
+                    <button id="start-button" class="btn" onclick="startGame()">Start</button>
+                    <button id="quit-button" class="btn" onclick="exitGame()">Quit</button>
+                </div>
+            </div>
+            <div id="endscreen" class="d-none">
+                <button class="btn" id="start-button" onclick="startGame()">Restart</button>
+                <button class="btn">Back to Menu</button>
+            </div>
+            <div id="winscreen"></div>
 
-    <div id="landscape" class="d-none">
-        <span>Please rotate yout Device to Play</span>
-        <img src="./img/phone-position-rotation-from-horizontal-to-vertical.png" alt="image rotate phone">
-    </div>
+        <div id="landscape" class="d-none">
+            <span>Please rotate yout Device to Play</span>
+            <img src="./img/phone-position-rotation-from-horizontal-to-vertical.png" alt="image rotate phone">
+        </div>
 
-    <!-- <h4>Item by: <a href="https://flaticon.com" target="_blank">https://flaticon.com</a></h4> -->
+        <!-- <h4>Item by: <a href="https://flaticon.com" target="_blank">https://flaticon.com</a></h4> -->
 </body>
 
 </html>
