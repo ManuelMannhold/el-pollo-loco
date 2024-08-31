@@ -43,6 +43,7 @@ class World {
     this.forEachEnemy();
     this.forEachBottles();
     this.forEachCoins();
+    this.forEndboss();
   }
 
   forEachCoins() {
@@ -78,6 +79,14 @@ class World {
       }
     });
   }
+
+    forEndboss() {
+      if(this.character.isColliding(this.endboss)) {
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.energy);
+      };
+    }
+
 
   checkThrowObjects() {
     if (this.keyboard.D && this.bottles > 0) {
