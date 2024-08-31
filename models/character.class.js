@@ -124,9 +124,10 @@ class Character extends MovableObject {
       this.world.camera_x = -this.x + 100;
 
       if (isMoving) {
-        this.playAnimation(this.IMAGES_WALKING);
+          this.playAnimation(this.IMAGES_WALKING);
         this.walking_sound.play();
       } else {
+        this.playAnimation(this.IMAGES_IDLE); 
         this.walking_sound.pause();
       }
     }, 1000 / 60);
@@ -137,22 +138,21 @@ class Character extends MovableObject {
         setTimeout(() => {
           endGame();
         }, 1000);
-
-        setInterval(() => {
           if (this.isHurt()) {
             this.ifIsHurt();
           }
-        }, 1500);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-          this.playAnimation(this.IMAGES_WALKING);
+          setInterval( () => {
+            this.playAnimation(this.IMAGES_WALKING);
+          },150);
         } else {
           this.stopAnimation();
         }
       }
-    }, 2000);
+    }, 1000);
   }
 
   ifIsHurt() {

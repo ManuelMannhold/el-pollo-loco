@@ -111,6 +111,7 @@ class World {
       this.throwableObject.splice(-1, 1)
       this.endboss.energy = this.endboss.energy - 20;
       this.endboss.bottleHurt = true;
+      this.endboss.checkBottleHurt();
       this.statusBarBoss.setBoss(this.endboss.energy);
     }
   }

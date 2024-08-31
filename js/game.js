@@ -3,13 +3,12 @@ let world;
 let keyboard = new Keyboard();
 gameStart = true;
 gameEnd = false;
-let backgroundAudio = new Audio("audio/background-music.mp3");
+// let backgroundAudio = new Audio("audio/background-music.mp3");
 
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
   initLevel();
-
   console.log("My Charakter is", world.character);
 }
 
@@ -55,6 +54,49 @@ document.addEventListener("keyup", (event) => {
   }
 });
 
+
+function bindButtonPressEvents() {
+  document.getElementById('btn-left').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    this.LEFT = true;
+  });
+
+  document.getElementById('btn-left').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    this.LEFT = false;
+  });
+
+  document.getElementById('btn-right').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    this.RIGHT = true;
+  });
+
+  document.getElementById('btn-right').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    this.RIGHT = false;
+  });
+
+  document.getElementById('btn-throw').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    this.D = true;
+  });
+
+  document.getElementById('btn-throw').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    this.D = false;
+  });
+
+  document.getElementById('btn-jump').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    this.SPACE = true;
+  });
+
+  document.getElementById('btn-jump').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    this.SPACE = false;
+  });
+}
+
 function startGame() {
   let start = document.getElementById("start");
   let endscreen = document.getElementById("endscreen");
@@ -66,7 +108,7 @@ function startGame() {
     start.classList.add("d-none");
     endscreen.classList.add("d-none");
   }
-  backgroundAudio.play();
+  // backgroundAudio.play();
   world = null;
   initLevel();
   init();
@@ -83,6 +125,8 @@ function endGame() {
   if (gameEnd) {
     start.classList.add("d-none");
     endscreen.classList.remove("d-none");
+    this.bindButtonPressEvents();
+    // this.backgroundAudio.pause();
   }
 
   clearAllIntervals();
@@ -101,6 +145,7 @@ function exitGame() {
 
 function restartGame() {
   world = null;
+  initLevel();
   init();
 }
 

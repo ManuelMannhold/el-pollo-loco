@@ -68,7 +68,7 @@ class Endboss extends MovableObject {
 
   animate() {
     setInterval(() => {
-      this.checkEnergy();
+      this.checkBottleHurt();
     }, 200);
 
     setInterval(() => {
@@ -80,21 +80,27 @@ class Endboss extends MovableObject {
     }, 200);
   }
 
-  attackCharacter(){
-    if(this.attack){
-        this.attackCount++;
-        this.speed = 3;
-        this.moveLeft();
-        this.otherDirection = false;
-        if(this.attackCount > 200){
-            this.attackCount = 0;
-            this.count = 200;
-            this.attack = 0;
-        }         
+  checkBottleHurt() {
+    if (this.bottleHurt) {
+      this.attack = true;
+      setTimeout(() => {
+        setInterval(() => {
+          this.playAnimation(this.IMAGES_HURT);
+        }, 200);
+      }, 1000);
+      this.bottleHurt = false;
     }
+    else if (this.attack) {
+      this.attackCharacter();
+      this.playAnimation(this.IMAGES_ATTACK);
+    }
+    else if (this.energy <= 0)
+      this.playAnimation(this.IMAGES_DEAD);
+    else if (this.energy < 40)
+      this.playAnimation(this.IMAGES_ALERT);
     else
-        this.speed = 1.5;
-}
+      this.playAnimation(this.IMAGES_WALKING);
+  }
 
   moveEndboss() {
     if (this.energy > 0 && !this.attack) {
@@ -111,20 +117,19 @@ class Endboss extends MovableObject {
     }
   }
 
-  checkEnergy() {
-    if (this.bottleHurt) {
-      this.attack = true;
-      this.playAnimation(this.IMAGES_HURT);
-      setTimeout(() => { }, 1000);
-      this.bottleHurt = false;
+  attackCharacter() {
+    if (this.attack) {
+      this.attackCount++;
+      this.speed = 3;
+      this.moveLeft();
+      this.otherDirection = false;
+      if (this.attackCount > 200) {
+        this.attackCount = 0;
+        this.count = 200;
+        this.attack = 0;
+      }
     }
-    else if (this.attack)
-      this.playAnimation(this.IMAGES_ATTACK);
-    else if (this.energy <= 0)
-      this.playAnimation(this.IMAGES_DEAD);
-    else if (this.energy < 40)
-      this.playAnimation(this.IMAGES_ALERT);
     else
-      this.playAnimation(this.IMAGES_WALKING);
+      this.speed = 1.5;
   }
 }
