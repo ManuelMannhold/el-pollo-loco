@@ -90,7 +90,7 @@ class World {
       this.statusBarBottle.setBottle(this.bottles);
       setInterval(() => {
         this.checkCollisionEndbossBottle(bottle);
-      }, 500);
+      }, 600);
       setInterval(() => {
         this.checkCollisionEnemyBottle(bottle);
       }, 10);

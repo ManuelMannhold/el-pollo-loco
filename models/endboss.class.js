@@ -69,7 +69,7 @@ class Endboss extends MovableObject {
   animate() {
     setInterval(() => {
       this.checkBottleHurt();
-    }, 200);
+    }, 400);
 
     setInterval(() => {
       this.moveEndboss();
@@ -83,23 +83,18 @@ class Endboss extends MovableObject {
   checkBottleHurt() {
     if (this.bottleHurt) {
       this.attack = true;
-      setTimeout(() => {
-        setInterval(() => {
-          this.playAnimation(this.IMAGES_HURT);
-        }, 200);
-      }, 1000);
+      this.playAnimation(this.IMAGES_HURT);
       this.bottleHurt = false;
-    }
-    else if (this.attack) {
+    } else if (this.attack) {
       this.attackCharacter();
       this.playAnimation(this.IMAGES_ATTACK);
-    }
-    else if (this.energy <= 0)
+    } else if (this.energy <= 0) {
       this.playAnimation(this.IMAGES_DEAD);
-    else if (this.energy < 40)
+    } else if (this.energy < 40) {
       this.playAnimation(this.IMAGES_ALERT);
-    else
+    } else {
       this.playAnimation(this.IMAGES_WALKING);
+    }
   }
 
   moveEndboss() {
