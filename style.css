@@ -63,6 +63,7 @@ canvas {
     position: absolute;
     height: 480px;
     width: 720px;
+    top: 20%;
 }
 
 .btn {
@@ -186,7 +187,7 @@ canvas {
 }
 
 #landscape {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: white;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -282,21 +283,20 @@ canvas {
     }
 }
 
-@media (orientation: landscape) {
+@media (orientation: landscape) and (width <= 500px) {
     #landscape {
-        display: none;
+        display: block !important; 
     }
     #steering {
-        display: none;
+        display: block;
     }
 }
 
-@media (orientation: portrait) {
+@media (orientation: portrait) and (width >= 500px) {
     #landscape {
-        display: block !important;
+        display: none; 
     }
     #steering {
         display: none;
     }
-    
 }
