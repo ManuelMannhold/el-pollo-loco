@@ -91,16 +91,14 @@ function initLevel() {
         "img/5_background/layers/1_first_layer/1.png",
         719 * 6
       ),
-      
-      
     ],
     [new Cloud(), new Cloud(), new Cloud()],
     [new Coins(), new Coins(), new Coins(), new Coins(), new Coins()],
     [
       // new Chicken(),
       // new Chicken(),
-      new Chicken(),
-      new Chicken(),
+      // new Chicken(),
+      // new Chicken(),
       // new ChickenSmall(),
       // new ChickenSmall(),
       // new ChickenSmall(),
@@ -119,6 +117,6 @@ function initLevel() {
       new Bottle(),
       new Bottle(),
       new Bottle(),
-    ],
+    ]
   );
 }

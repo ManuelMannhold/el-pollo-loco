@@ -63,7 +63,6 @@ canvas {
     position: absolute;
     height: 480px;
     width: 720px;
-    top: 20%;
 }
 
 .btn {
@@ -182,7 +181,7 @@ canvas {
     height: 480px;
     background-image: url("./img/9_intro_outro_screens/game_over/oh\ no\ you\ lost!.png");
     background-repeat: no-repeat;
-    background-position: top;
+    background-position: center;
     background-size: cover;
 }
 
@@ -191,14 +190,12 @@ canvas {
     position: fixed;
     top: 0;
     bottom: 0;
+    left: 0;
+    right: 0;
     font-size: 60px;
-    text-align: center;
-    align-content: center;
     color: black;
     padding: 50px;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
 }
 
 #landscape span {
@@ -221,19 +218,17 @@ canvas {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 100%;   
+    width: 100%;
 }
 
 #steering-buttons-mobile {
     display: flex;
-    width: 720px;
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    bottom: 26%;
-    left: 18%;
+    bottom: 0;
+    left: 0;
     padding-bottom: 10px;
-    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 15px;
 }
 
@@ -264,8 +259,8 @@ canvas {
     transform: rotate(-60deg);
 }
 
-.arrow-right-rotated-180 {
-    transform: rotateX(180deg);
+.arrow-right-rotatedZ-270 {
+    transform: rotateZ(270deg);
 }
 
 
@@ -288,24 +283,48 @@ canvas {
     }
 }
 
-@media (width <= 500px) {
-    body {
-        max-width: 500px;
-    }
+@media (width <=500px) or (orientation: landscape) {
     #landscape {
-        display: block !important; 
+        display: block !important;
     }
+
     #steering {
-        display: block;
+        display: flex;
+        font-size: 14px;
+    }
+
+    #start {
+        width: 100%;
+        height: 100vh;
+        background-position: center;
+    }
+
+    #endscreen {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .btn {
+        padding: 0 40px;
+    }
+
+    #buttons {
+        top: 0;
     }
 }
 
-@media (width >= 500px) {
+@media (width >=500px) {
     #landscape {
-        display: none !important; 
+        display: none !important;
     }
+}
+
+@media (width >=500px) and (width <=1000px) {
     #steering {
         display: none;
     }
-}
 
+    #steering-buttons-mobile {
+        display: flex !important;
+    }
+}

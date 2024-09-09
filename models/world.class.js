@@ -18,6 +18,8 @@ class World {
   coins = 0;
   coins_pick_sound = new Audio("audio/coins_pick_sound.mp3");
   hurt_sound = new Audio("audio/hurt_sound.mp3");
+  bottleOnGround = false;
+  splashedBottle = false;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -84,14 +86,13 @@ class World {
     });
   }
 
-    forEndboss() {
-      if(this.character.isColliding(this.endboss)) {
-        this.hurt_sound.play();
-        this.character.hit();
-        this.statusBar.setPercentage(this.character.energy);
-      };
+  forEndboss() {
+    if (this.character.isColliding(this.endboss)) {
+      this.hurt_sound.play();
+      this.character.hit();
+      this.statusBar.setPercentage(this.character.energy);
     }
-
+  }
 
   checkThrowObjects() {
     if (this.keyboard.D && this.bottles > 0) {
@@ -108,6 +109,9 @@ class World {
       setInterval(() => {
         this.checkCollisionEnemyBottle(bottle);
       }, 10);
+      setInterval(() => {
+        this.checkBottleOnGround();
+      }, 20);
     }
   }
 
@@ -115,19 +119,32 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (bottle.isColliding(enemy)) {
         enemy.isKilled = true;
-        this.throwableObject.splice(-1, 1)
+        this.throwableObject.splice(-1, 1);
       }
     });
   }
 
   checkCollisionEndbossBottle(bottle) {
     if (this.endboss.isColliding(bottle)) {
-      this.throwableObject.splice(-1, 1)
+      this.throwableObject.splice(-1, 1);
       this.endboss.energy = this.endboss.energy - 20;
       this.endboss.bottleHurt = true;
       this.endboss.checkBottleHurt();
       this.statusBarBoss.setBoss(this.endboss.energy);
     }
+  }
+
+  checkBottleOnGround() {
+    this.level.bottles.forEach((bottle, i) => {
+      if (bottle.y >= 360) {
+        this.bottleOnGround = true;
+      } else {
+        this.bottleOnGround = false;
+      }
+      if (this.character.x >= bottle.x) {
+        this.level.bottles.splice(i, 1);
+      }
+    });
   }
 
   draw() {

@@ -82,9 +82,9 @@ class Endboss extends MovableObject {
 
   checkBottleHurt() {
     if (this.bottleHurt) {
-      this.attack = true;
       this.playAnimation(this.IMAGES_HURT);
-      this.bottleHurt = false;
+      setTimeout(() => {}, 1000);
+      this.attack = true;
     } else if (this.attack) {
       this.attackCharacter();
       this.playAnimation(this.IMAGES_ATTACK);
@@ -107,8 +107,7 @@ class Endboss extends MovableObject {
         this.count++;
         this.moveRight();
         this.otherDirection = true;
-      } else
-        this.count = 0;
+      } else this.count = 0;
     }
   }
 
@@ -123,8 +122,6 @@ class Endboss extends MovableObject {
         this.count = 200;
         this.attack = 0;
       }
-    }
-    else
-      this.speed = 1.5;
+    } else this.speed = 1.5;
   }
 }
