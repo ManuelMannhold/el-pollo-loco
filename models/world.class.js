@@ -18,6 +18,8 @@ class World {
   coins = 0;
   coins_pick_sound = new Audio("audio/coins_pick_sound.mp3");
   hurt_sound = new Audio("audio/hurt_sound.mp3");
+  pick_bottle = new Audio("audio/pick_bottle.mp3");
+  chicken_dead = new Audio("audio/chicken_dead.mp3");
   bottleOnGround = false;
   splashedBottle = false;
 
@@ -37,7 +39,7 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
-    }, 10);
+    }, 50);
     setInterval(() => {
       this.checkThrowObjects();
     }, 150);
@@ -64,6 +66,7 @@ class World {
   forEachBottles() {
     this.level.bottles.forEach((bottles, index) => {
       if (this.character.isColliding(bottles) && this.bottles < 5) {
+        this.pick_bottle.play();
         this.bottles++;
         this.statusBarBottle.setBottle(this.bottles);
         this.bottle = true;
@@ -77,6 +80,7 @@ class World {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
           enemy.isKilled = true;
+          this.chicken_dead.play();
         } else if (!enemy.isKilled) {
           this.hurt_sound.play();
           this.character.hit();
@@ -109,15 +113,13 @@ class World {
       setInterval(() => {
         this.checkCollisionEnemyBottle(bottle);
       }, 10);
-      setInterval(() => {
-        this.checkBottleOnGround();
-      }, 20);
     }
   }
 
   checkCollisionEnemyBottle(bottle) {
     this.level.enemies.forEach((enemy) => {
       if (bottle.isColliding(enemy)) {
+        this.chicken_dead.play();
         enemy.isKilled = true;
         this.throwableObject.splice(-1, 1);
       }
@@ -134,19 +136,6 @@ class World {
     }
   }
 
-  checkBottleOnGround() {
-    this.level.bottles.forEach((bottle, i) => {
-      if (bottle.y >= 360) {
-        this.bottleOnGround = true;
-      } else {
-        this.bottleOnGround = false;
-      }
-      if (this.character.x >= bottle.x) {
-        this.level.bottles.splice(i, 1);
-      }
-    });
-  }
-
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -155,7 +144,7 @@ class World {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.endboss);
+    this.addObjectsToMap(this.endboss);
     this.addObjectsToMap(this.throwableObject);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottles);
@@ -179,10 +168,15 @@ class World {
   }
 
   addObjectsToMap(objects) {
-    objects.forEach((o) => {
-      this.addToMap(o);
-    });
+    if (Array.isArray(objects)) {
+      objects.forEach((o) => {
+        this.addToMap(o);
+      });
+    } else {
+      this.addToMap(objects); 
+    }
   }
+  
 
   addToMap(mo) {
     if (mo.otherDirection) {

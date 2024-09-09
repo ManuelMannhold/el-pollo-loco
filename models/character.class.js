@@ -100,15 +100,17 @@ class Character extends MovableObject {
     }, 12);
     setInterval(() => {
       this.deadFunctionInterval();
-      this.checkMovement();
       this.checkJump();
+      this.checkMovement();
+      this.ifIsHurt();
     }, 150);
-    this.stopAnimation();
+    setInterval(() => {
+      this.stopAnimation();
+    }, 2000);
   }
 
-
-
   ifIsHurt() {
+    if(this.isHurt())
     this.playAnimation(this.IMAGES_HURT);
     this.endHurt = true;
   }
@@ -138,14 +140,6 @@ class Character extends MovableObject {
       this.endHurt = false;
     }
     this.world.camera_x = -this.x + 100;
-
-    // if (isMoving) {
-    //     this.playAnimation(this.IMAGES_WALKING);
-    //   this.walking_sound.play();
-    // } else {
-    //   this.playAnimation(this.IMAGES_IDLE); 
-    //   this.walking_sound.pause();
-    // }
   }
 
   deadFunctionInterval() {
@@ -155,16 +149,8 @@ class Character extends MovableObject {
         setTimeout(() => {
           endGame();
         }, 1000);
-        if (this.isHurt()) {
-          this.ifIsHurt();
-        }
-        // } else if (this.isAboveGround()) {
-        //   this.playAnimation(this.IMAGES_JUMPING);
-        // } else {
-
-        // }
       }
-    }, 1000);
+    }, 4000);
   }
 
   checkMovement() {
@@ -192,7 +178,6 @@ class Character extends MovableObject {
     }
   }
   
-
     stopAnimation() {
         this.playAnimation(this.IMAGES_IDLE);
         this.ifTimepassedForSleep();

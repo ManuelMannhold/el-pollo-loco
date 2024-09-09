@@ -143,6 +143,16 @@ function endGame() {
     endscreen.classList.remove("d-none");
     // this.backgroundAudio.pause();
   }
+}
+
+function winGame() {
+  let win = document.getElementById("winscreen");
+
+  gameWin = true;
+
+  if (gameWin) {
+    win.classList.remove("d-none");
+  }
 
   clearAllIntervals();
   document.getElementById("buttons").classList.add("d-none");
@@ -152,13 +162,12 @@ function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
-function quitGame() {}
-
-function exitGame() {
-  window.ref;
+function quitGame() {
+  window.open('index.html', '_self');
 }
 
 function restartGame() {
+  document.getElementById('endscreen').classList.add('d-none');
   clearAllIntervals();
   world = null;
   initLevel();
@@ -174,10 +183,4 @@ function toggleSoundImage() {
   } else if (mute.classList[0]) {
     backgroundAudio.volume = 1;
   }
-}
-
-function fullscreen() {
-  let canvas = document.getElementById("canvas-container");
-
-  canvas.requestFullscreen();
 }

@@ -77,19 +77,27 @@ class Endboss extends MovableObject {
 
     setInterval(() => {
       this.attackCharacter();
-    }, 200);
+    }, 10);
   }
 
   checkBottleHurt() {
     if (this.bottleHurt) {
       this.playAnimation(this.IMAGES_HURT);
-      setTimeout(() => {}, 1000);
-      this.attack = true;
+      setTimeout(() => {
+        this.bottleHurt = false;
+        this.attack = true;
+      }, 1000);
     } else if (this.attack) {
-      this.attackCharacter();
       this.playAnimation(this.IMAGES_ATTACK);
-    } else if (this.energy <= 0) {
-      this.playAnimation(this.IMAGES_DEAD);
+      this.attackCharacter();
+    } else if (this.energy == 0) {
+        this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => {
+          winGame();
+          setTimeout(() => {
+          window.open('index.html', '_self');
+        }, 2000);
+      }, 3000);
     } else if (this.energy < 40) {
       this.playAnimation(this.IMAGES_ALERT);
     } else {
@@ -107,7 +115,8 @@ class Endboss extends MovableObject {
         this.count++;
         this.moveRight();
         this.otherDirection = true;
-      } else this.count = 0;
+      } else 
+      this.count = 0;
     }
   }
 

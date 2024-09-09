@@ -185,6 +185,22 @@ canvas {
     background-size: cover;
 }
 
+#winscreen {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: orange;
+    top: 22.5%;
+}
+
+#winscreen img {
+    width: 70%;
+    filter: drop-shadow(15px 15px);
+}
+
 #landscape {
     background-color: white;
     position: fixed;
@@ -294,8 +310,6 @@ canvas {
     }
 
     #start {
-        width: 100%;
-        height: 100vh;
         background-position: center;
     }
 
