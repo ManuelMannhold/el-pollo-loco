@@ -81,7 +81,7 @@ class Endboss extends MovableObject {
   }
 
   checkBottleHurt() {
-    if (this.bottleHurt) {
+    if (this.bottleHurt && this.energy > 0) {
       this.playAnimation(this.IMAGES_HURT);
       setTimeout(() => {
         this.bottleHurt = false;

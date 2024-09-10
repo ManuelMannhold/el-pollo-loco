@@ -130,6 +130,8 @@ class World {
     if (this.endboss.isColliding(bottle)) {
       this.throwableObject.splice(-1, 1);
       this.endboss.energy = this.endboss.energy - 20;
+      console.log('endboss energy', this.endboss.energy);
+      
       this.endboss.bottleHurt = true;
       this.endboss.checkBottleHurt();
       this.statusBarBoss.setBoss(this.endboss.energy);

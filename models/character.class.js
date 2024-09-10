@@ -110,8 +110,8 @@ class Character extends MovableObject {
   }
 
   ifIsHurt() {
-    if (this.isHurt())
-      this.playAnimation(this.IMAGES_HURT);
+    if(this.isHurt())
+    this.playAnimation(this.IMAGES_HURT);
     this.endHurt = true;
   }
 
@@ -157,31 +157,41 @@ class Character extends MovableObject {
     if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
       this.playAnimation(this.IMAGES_WALKING);
       this.isJump = false;
-    } else if (!this.isJump) {
+    } else {
       this.stopAnimation();
     }
   }
 
   checkJump() {
     if (this.world.keyboard.SPACE && !this.isJump && !this.isAboveGround()) {
-      this.isJump = true;
-      this.jump_sound_character.play();
-      this.jump();
+        this.isJump = true; 
+        this.jump_sound_character.play();
+        this.jump(); 
     }
 
     if (this.isAboveGround()) {
-      this.playAnimation(this.IMAGES_JUMPING);
+        this.playAnimation(this.IMAGES_JUMPING);
     }
 
     if (!this.isAboveGround() && this.isJump) {
-      this.isJump = false;
+        this.isJump = false; 
     }
-  }
+}
 
+  
   stopAnimation() {
+    let timePassed = new Date().getTime() - this.lastAction;
+    timePassed = timePassed / 1000;
+
     if (!this.isJump && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
       this.playAnimation(this.IMAGES_IDLE);
-      this.ifTimepassedForSleep();
+    } else if (timePassed > 5 && this.isMoving) {
+      this.playAnimation(this.IMAGES_SLEEP);
+      this.snore_sound.play();
+      this.isSleep = true;
+    } else {
+      !this.isSleep;
+      this.snore_sound.pause();
     }
   }
 
@@ -198,4 +208,4 @@ class Character extends MovableObject {
       this.snore_sound.pause();
     }
   }
-}
+  }
