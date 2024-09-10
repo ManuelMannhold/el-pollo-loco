@@ -110,8 +110,8 @@ class Character extends MovableObject {
   }
 
   ifIsHurt() {
-    if(this.isHurt())
-    this.playAnimation(this.IMAGES_HURT);
+    if (this.isHurt())
+      this.playAnimation(this.IMAGES_HURT);
     this.endHurt = true;
   }
 
@@ -157,43 +157,46 @@ class Character extends MovableObject {
     if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
       this.playAnimation(this.IMAGES_WALKING);
       this.isJump = false;
-    } else {
+    } else if (!this.isJump) {
       this.stopAnimation();
     }
   }
 
   checkJump() {
     if (this.world.keyboard.SPACE && !this.isJump && !this.isAboveGround()) {
-      this.isJump = true; 
-      this.jump_sound_character.play();
-      this.jump();
+        this.isJump = true; 
+        this.jump_sound_character.play();
+        this.jump(); 
     }
-  
+
     if (this.isAboveGround()) {
-      this.isJump = false;
-      this.playAnimation(this.IMAGES_JUMPING);
-    }
-    if (!this.isAboveGround()) {
-      this.isJump = false;
-    }
-  }
-  
-    stopAnimation() {
-        this.playAnimation(this.IMAGES_IDLE);
-        this.ifTimepassedForSleep();
+        this.playAnimation(this.IMAGES_JUMPING);
     }
 
-    ifTimepassedForSleep() {
-      let timePassed = new Date().getTime() - this.lastAction;
-      timePassed = timePassed / 1000;
+    if (!this.isAboveGround() && this.isJump) {
+        this.isJump = false; 
+    }
+}
 
-      if (timePassed > 5 && this.isMoving) {
-        this.playAnimation(this.IMAGES_SLEEP);
-        this.snore_sound.play();
-        this.isSleep = true;
-      } else {
-        !this.isSleep;
-        this.snore_sound.pause();
-      }
+
+  stopAnimation() {
+    if (!this.isJump && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
+      this.playAnimation(this.IMAGES_IDLE);
+      this.ifTimepassedForSleep();
     }
   }
+
+  ifTimepassedForSleep() {
+    let timePassed = new Date().getTime() - this.lastAction;
+    timePassed = timePassed / 1000;
+
+    if (timePassed > 5 && this.isMoving) {
+      this.playAnimation(this.IMAGES_SLEEP);
+      this.snore_sound.play();
+      this.isSleep = true;
+    } else {
+      !this.isSleep;
+      this.snore_sound.pause();
+    }
+  }
+}
