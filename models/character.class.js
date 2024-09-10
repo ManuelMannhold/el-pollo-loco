@@ -164,20 +164,19 @@ class Character extends MovableObject {
 
   checkJump() {
     if (this.world.keyboard.SPACE && !this.isJump && !this.isAboveGround()) {
-        this.isJump = true; 
-        this.jump_sound_character.play();
-        this.jump(); 
+      this.isJump = true;
+      this.jump_sound_character.play();
+      this.jump();
     }
 
     if (this.isAboveGround()) {
-        this.playAnimation(this.IMAGES_JUMPING);
+      this.playAnimation(this.IMAGES_JUMPING);
     }
 
     if (!this.isAboveGround() && this.isJump) {
-        this.isJump = false; 
+      this.isJump = false;
     }
-}
-
+  }
 
   stopAnimation() {
     if (!this.isJump && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {

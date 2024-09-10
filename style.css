@@ -35,7 +35,7 @@ canvas {
 }
 
 #steering {
-    width: 720px;
+    width: 90%;
     display: flex;
     justify-content: space-around;
     color: orange;
@@ -45,6 +45,8 @@ canvas {
     text-shadow: 1px 2px 5px black;
     letter-spacing: 4px;
     pointer-events: none;
+    position: absolute;
+    bottom: 10%;
 }
 
 #steering span {
@@ -299,7 +301,7 @@ canvas {
     }
 }
 
-@media (width <=500px) or (orientation: landscape) {
+@media only screen and (max-width: 500px) and (orientation: landscape) {
     #landscape {
         display: block !important;
     }
@@ -333,12 +335,12 @@ canvas {
     }
 }
 
-@media (width >=500px) and (width <=1000px) {
-    #steering {
-        display: none;
-    }
-
+@media (pointer: coarse) and (orientation: landscape) {
     #steering-buttons-mobile {
         display: flex !important;
+    }
+
+    #steering {
+        display: none;
     }
 }
