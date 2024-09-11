@@ -390,15 +390,9 @@ canvas {
         display: none !important;
     }
 
-    #button-container-info {
-        top: 20%;
-    }
-
     #start {
         background-position: center;
     }
-
-    
 }
 
 @media (pointer: coarse) and (orientation: landscape) {
@@ -420,5 +414,9 @@ canvas {
 
     #endscreen {
         width: 100%;
+    }
+
+    #button-container-info {
+        top: 20%;
     }
 }
