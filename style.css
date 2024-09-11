@@ -92,9 +92,9 @@ canvas {
     padding: 5px 10px;
     display: flex;
     gap: 20px;
-    position: absolute;
-    right: 40%;
-    top: 0;
+    position: fixed;
+    right: 45%;
+    top: 20%;
 }
 
 .button-container {
@@ -385,10 +385,20 @@ canvas {
     }
 }
 
-@media (width >=500px) {
+@media only screen and (width >=500px){
     #landscape {
         display: none !important;
     }
+
+    #button-container-info {
+        top: 20%;
+    }
+
+    #start {
+        background-position: center;
+    }
+
+    
 }
 
 @media (pointer: coarse) and (orientation: landscape) {
@@ -398,5 +408,17 @@ canvas {
 
     #steering {
         display: none;
+    }
+
+    #start {
+        max-width: unset;
+    }
+
+    #winscreen {
+        width: 100%;
+    }
+
+    #endscreen {
+        width: 100%;
     }
 }

@@ -239,6 +239,13 @@ function restartGame() {
   world = null;
   initLevel();
   init();
+  backgroundAudio.play();
+  backgroundAudio.volume = 0.25;
+  world.audios.playAudio();
+}
+
+function quitGame() {
+  window.open('index.html', '_self')
 }
 
 /**
