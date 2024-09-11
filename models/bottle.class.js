@@ -20,27 +20,35 @@ class Bottle extends MovableObject {
     this.loadImages(this.IMAGES_BOTTLE);
     this.x = 200 + Math.random() * 3600;
     this.animate();
-    // this.bottleSplash();
   }
 
+  /**
+ * Animates the object by cycling through a set of images.
+ * 
+ * This method runs the animation by periodically calling `playAnimation()`
+ * with the `IMAGES_BOTTLE` array. The animation runs every 500 milliseconds.
+ */
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_BOTTLE);
     }, 500);
   }
 
+  /**
+ * Retrieves the index of a bottle object from the `level1.bottles` array.
+ * 
+ * This method iterates through the `bottles` array in the `level1` object
+ * and compares the x-coordinate of each bottle to the given object's x-coordinate.
+ * 
+ * @param {Object} obj - The object to find in the bottles array.
+ * @param {number} obj.x - The x-coordinate of the object to match.
+ * @returns {number|undefined} The index of the matching bottle in the array, or undefined if no match is found.
+ */
   getIndexBottles(obj) {
     for (let i = 0; i < level1.bottles.length; i++) {
       if (level1.bottles[i].x == obj.x) {
-        console.log(i);
         return i;
       }
     }
   }
-
-  // bottleSplash() {
-  //   if (this.bottles.isColliding(!this.isAboveGround)) {
-  //     this.throwableObject.splice(-1, 1)
-  //   }
-  // };
 }

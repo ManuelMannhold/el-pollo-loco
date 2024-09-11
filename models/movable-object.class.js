@@ -21,15 +21,35 @@ class MovableObject extends DrawableObject {
     }, 1000 / 25);
   }
 
+  /**
+ * Determines whether the object is above the ground.
+ * 
+ * - For `ThrowableObject` instances, it always returns true to ensure they fall.
+ * - For other objects, it checks if the y-coordinate is less than 210.
+ * 
+ * @returns {boolean} True if the object is above the ground, false otherwise.
+ */
   isAboveGround() {
     if (this instanceof ThrowableObject) {
-      // ThrowableObjects should always fall
       return true;
     } else {
       return this.y < 210;
     }
   }
 
+  /**
+ * Checks if the object is colliding with another object.
+ * 
+ * This method compares the position and size (including offsets) of two objects to detect collisions.
+ * 
+ * @param {Object} obj - The object to check collision with.
+ * @param {number} obj.x - The x-coordinate of the other object.
+ * @param {number} obj.y - The y-coordinate of the other object.
+ * @param {number} obj.width - The width of the other object.
+ * @param {number} obj.height - The height of the other object.
+ * @param {Object} obj.offset - The offset of the other object to fine-tune collision detection.
+ * @returns {boolean} True if the objects are colliding, false otherwise.
+ */
   isColliding(obj) {
     return (
       this.x + this.width - this.offset.right >= obj.x + obj.offset.left &&
@@ -39,6 +59,12 @@ class MovableObject extends DrawableObject {
     );
   }
 
+  /**
+ * Reduces the object's energy by 5 when hit.
+ * 
+ * - Ensures the energy doesn't drop below 0.
+ * - Records the time of the last hit for tracking purposes.
+ */
   hit() {
     this.energy -= 5;
     if (this.energy < 0) {
@@ -48,25 +74,45 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+ * Checks if the object is hurt by determining if it was hit within the last second.
+ * 
+ * @returns {boolean} True if the object was hurt in the last second, false otherwise.
+ */
   isHurt() {
-    let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
-    timepassed = timepassed / 1000; // Difference in s
+    let timepassed = new Date().getTime() - this.lastHit; 
+    timepassed = timepassed / 1000; 
 
     return timepassed < 1;
   }
 
+  /**
+ * Determines if the object is dead based on its energy level.
+ * 
+ * @returns {boolean} True if the object's energy is 0 or below, false otherwise.
+ */
   isDead() {
     return this.energy <= 0;
   }
 
+  /**
+ * Moves the object to the right by increasing its x-coordinate by its speed.
+ */
   moveRight() {
     this.x += this.speed;
   }
 
+  /**
+ * Moves the object to the left by decreasing its x-coordinate by its speed.
+ */
   moveLeft() {
     this.x -= this.speed;
   }
 
+  /**
+ * Makes the object jump by setting its vertical speed if it is not already above the ground.
+ * Plays a jump sound effect when jumping.
+ */
   jump() {
     if (!this.isAboveGround()) {
       this.world.audios.jump_sound_character.play();
@@ -74,8 +120,16 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+ * Plays an animation by cycling through an array of image paths.
+ * 
+ * - The animation loops through the provided images array.
+ * - Updates the current image of the object based on the animation index.
+ * 
+ * @param {string[]} images - An array of image paths for the animation.
+ */
   playAnimation(images) {
-    let i = this.currentImage % images.length; // let i = 0 % 6 => 0, Rest 0;
+    let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;

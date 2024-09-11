@@ -42,10 +42,26 @@ class ChickenSmall extends MovableObject {
     }, 200);
   }
 
+  /**
+ * Removes a chicken enemy from the `level1.enemies` array at the specified index.
+ * 
+ * @param {number} i - The index of the chicken enemy to remove from the array.
+ */
   spliceChicken(i) {
     level1.enemies.splice(i, 1);
   }
 
+
+/**
+ * Retrieves the index of a chicken enemy from the `level1.enemies` array.
+ * 
+ * This method iterates through the `enemies` array in the `level1` object
+ * and compares the x-coordinate of each chicken to the given object's x-coordinate.
+ * 
+ * @param {Object} obj - The object to find in the enemies array.
+ * @param {number} obj.x - The x-coordinate of the object to match.
+ * @returns {number|undefined} The index of the matching chicken enemy in the array, or undefined if no match is found.
+ */
   getIndexChicken(obj) {
     for (let i = 0; i < level1.enemies.length; i++) {
       if (level1.enemies[i].x == obj.x) {

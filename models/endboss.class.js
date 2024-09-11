@@ -80,31 +80,36 @@ class Endboss extends MovableObject {
     }, 10);
   }
 
+  /**
+ * Handles the state transitions of the boss character when hurt by a bottle, attacking, or dead.
+ * 
+ * - Plays the hurt animation if the character is hurt by a bottle and its energy is above 0.
+ * - If the character is in attack mode, it plays the attack animation and calls `attackCharacter()`.
+ * - If the character's energy is 0, it plays the death animation, triggers the winGame sequence, and redirects the player to the index page after a delay.
+ * - Otherwise, it plays an alert or walking animation based on the character's energy level.
+ */
   checkBottleHurt() {
     if (this.bottleHurt && this.energy > 0) {
       this.playAnimation(this.IMAGES_HURT);
-      setTimeout(() => {
-        this.bottleHurt = false;
-        this.attack = true;
-      }, 1000);
+      setTimeout(() => { this.bottleHurt = false; this.attack = true; }, 1000);
     } else if (this.attack) {
       this.playAnimation(this.IMAGES_ATTACK);
       this.attackCharacter();
     } else if (this.energy == 0) {
       this.playAnimation(this.IMAGES_DEAD);
-      setTimeout(() => {
-        winGame();
-        setTimeout(() => {
-          window.open("index.html", "_self");
-        }, 2000);
-      }, 3000);
-    } else if (this.energy < 40) {
-      this.playAnimation(this.IMAGES_ALERT);
+      setTimeout(() => { winGame(); setTimeout(() => window.open("index.html", "_self"), 2000); }, 3000);
     } else {
-      this.playAnimation(this.IMAGES_WALKING);
+      this.playAnimation(this.energy < 40 ? this.IMAGES_ALERT : this.IMAGES_WALKING);
     }
   }
 
+  /**
+   * Controls the movement pattern of the endboss based on its energy and attack status.
+   * 
+   * - Moves the boss left for 200 counts, then moves it right for the next 200 counts.
+   * - Resets the movement cycle after 400 counts.
+   * - The boss only moves when its energy is above 0 and it's not attacking.
+   */
   moveEndboss() {
     if (this.energy > 0 && !this.attack) {
       if (this.count < 200) {
@@ -119,6 +124,13 @@ class Endboss extends MovableObject {
     }
   }
 
+  /**
+ * Manages the boss's attack behavior.
+ * 
+ * - Increases the boss's speed during an attack and moves it left.
+ * - Plays the walking animation after 200 attack counts and resets the attack state.
+ * - Restores normal speed when the boss is not attacking.
+ */
   attackCharacter() {
     if (this.attack) {
       this.attackCount++;

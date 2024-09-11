@@ -9,15 +9,26 @@ let backgroundAudio = new Audio("audio/background-music.mp3");
 let win_sound = new Audio("audio/win_sound.mp3");
 let lose_sound = new Audio("audio/lose_sound.mp3");
 
+/**
+ * Initializes the game environment.
+ * 
+ * - Sets up the canvas, audio, and world.
+ * - Calls `initLevel` to set up the game level.
+ * - Calls `handleOrientation` to configure controls based on screen orientation.
+ */
 function init() {
   canvas = document.getElementById("canvas");
   audio = new AudioCollection();
   world = new World(canvas, keyboard, audio);
   initLevel();
   handleOrientation();
-  console.log("My Charakter is", world.character);
 }
 
+/**
+ * Handles keyboard input for game controls.
+ * 
+ * - Adds event listeners for keydown and keyup events to update the `keyboard` object.
+ */
 function keyboardSteering() {
   document.addEventListener("keydown", (event) => {
     if (event.keyCode == 37) {
@@ -62,6 +73,11 @@ function keyboardSteering() {
   });
 }
 
+/**
+ * Handles touch events for on-screen buttons.
+ * 
+ * - Adds event listeners for touchstart and touchend to control the game through touch buttons.
+ */
 function buttonPressEvents() {
   document.getElementById("btn-left").addEventListener("touchstart", (e) => {
     e.preventDefault();
@@ -104,13 +120,16 @@ function buttonPressEvents() {
   });
 }
 
+/**
+ * Handles screen orientation changes to set appropriate controls.
+ * 
+ * - Configures controls based on whether the device is in landscape or portrait mode.
+ */
 function handleOrientation() {
   if (window.matchMedia("(orientation: landscape)").matches) {
     keyboardSteering();
-    console.log("Querformat - Tastatursteuerung aktiviert");
   } else if (window.matchMedia("(orientation: portrait)").matches) {
     buttonPressEvents();
-    console.log("Hochformat - Button-Steuerung aktiviert");
   }
 }
 
@@ -118,13 +137,17 @@ window.addEventListener("resize", handleOrientation);
 window.addEventListener("orientationchange", handleOrientation);
 handleOrientation();
 
+/**
+ * Starts the game.
+ * 
+ * - Initializes game elements and starts background audio.
+ * - Updates UI to show game buttons and hide start/end screens.
+ */
 function startGame() {
   let start = document.getElementById("start");
   let endscreen = document.getElementById("endscreen");
-
   gameStart = true;
   gameEnd = false;
-
   if (gameStart) {
     start.classList.add("d-none");
     endscreen.classList.add("d-none");
@@ -133,17 +156,21 @@ function startGame() {
   initLevel();
   init();
   backgroundAudio.play();
+  backgroundAudio.volume = 0.25;
   world.audios.playAudio();
   document.getElementById("buttons").classList.remove("d-none");
 }
 
+/**
+ * Ends the game and displays the end screen.
+ * 
+ * - Updates UI to show the end screen, plays lose sound, and sets a timeout to reload the game.
+ */
 function endGame() {
   let start = document.getElementById("start");
   let endscreen = document.getElementById("endscreen");
-
   gameStart = false;
   gameEnd = true;
-
   if (gameEnd) {
     start.classList.add("d-none");
     endscreen.classList.remove("d-none");
@@ -155,6 +182,11 @@ function endGame() {
   }
 }
 
+/**
+ * Handles the win condition by displaying the win screen and playing win sound.
+ * 
+ * - Stops all intervals and hides game buttons.
+ */
 function winGame() {
   let win = document.getElementById("winscreen");
 
@@ -169,14 +201,38 @@ function winGame() {
   document.getElementById("buttons").classList.add("d-none");
 }
 
+/**
+ * Displays the imprint section.
+ * 
+ * - Removes the 'd-none' class from the element with the ID 'imprint' to make it visible.
+ */
+function openImprint() {
+  document.getElementById('imprint').classList.remove('d-none');
+}
+
+/**
+ * Hides the imprint section.
+ * 
+ * - Adds the 'd-none' class to the element with the ID 'imprint' to make it invisible.
+ */
+function closeImprint() {
+  document.getElementById('imprint').classList.add('d-none');
+}
+
+/**
+ * Clears all intervals to stop ongoing game processes.
+ * 
+ * - Iterates through a large number of interval IDs and clears them.
+ */
 function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
-function quitGame() {
-  window.open("index.html", "_self");
-}
-
+/**
+ * Restarts the game by reinitializing all game elements and levels.
+ * 
+ * - Hides the end screen, clears all intervals, and calls initialization functions.
+ */
 function restartGame() {
   document.getElementById("endscreen").classList.add("d-none");
   clearAllIntervals();
@@ -185,6 +241,20 @@ function restartGame() {
   init();
 }
 
+/**
+ * Shows the imprint or information section of the game.
+ * 
+ * - Displays the imprint or info section by removing the 'd-none' class.
+ */
+function showImprint() {
+  document.getElementById('button-container-info').classList.remove('d-none');
+}
+
+/**
+ * Toggles the sound settings for the game.
+ * 
+ * - Mutes or unmutes the background audio and sound effects based on the mute button's state.
+ */
 function toggleSoundImage() {
   let mute = document.getElementById("mute");
   mute.classList.toggle("mute-on");

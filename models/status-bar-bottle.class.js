@@ -20,12 +20,28 @@ class StatusBarBottle extends DrawableObject {
     this.setBottle(0);
   }
 
+  /**
+ * Sets the bottle type and updates the object's image based on the current bottle index.
+ * 
+ * - The bottle type is stored in the `bottle` property.
+ * - The object's image is updated by fetching the corresponding bottle image from `IMAGES_BOTTLES`.
+ * 
+ * @param {number} bottle - The bottle type or index (from 0 to 5) to be set.
+ */
   setBottle(bottle) {
     this.bottle = bottle;
     let path = this.IMAGES_BOTTLES[this.bottleIndex()];
     this.img = this.imageCache[path];
   }
 
+  /**
+ * Returns the index of the current bottle based on its value.
+ * 
+ * - Returns a value between 0 and 5, based on the value of the `bottle` property.
+ * - If the `bottle` value is greater than 5, it defaults to 5.
+ * 
+ * @returns {number} The index of the current bottle (0 to 5).
+ */
   bottleIndex() {
     if (this.bottle == 0) {
       return 0;

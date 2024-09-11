@@ -9,6 +9,7 @@ class AudioCollection {
   backgroundAudio = new Audio("audio/background-music.mp3");
   win_sound = new Audio("audio/win_sound.mp3");
   lose_sound = new Audio("audio/lose_sound.mp3");
+  bottlesplash = new Audio("audio/bottle_smash.mp3");
 
   constructor() {
     this.pauseAudio();
@@ -25,6 +26,7 @@ class AudioCollection {
     this.backgroundAudio.volume = 0;
     this.win_sound.volume = 0;
     this.lose_sound.volume = 0;
+    this.bottlesplash.volume = 0;
   }
 
   playAudio() {
@@ -38,5 +40,6 @@ class AudioCollection {
     this.backgroundAudio.volume = 1;
     this.win_sound.volume = 1;
     this.lose_sound.volume = 1;
+    this.bottlesplash.volume = 1;
   }
 }

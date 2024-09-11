@@ -7,18 +7,18 @@ class DrawableObject {
   width = 100;
   height = 150;
 
-  //loadImage('img/test.png');
   loadImage(path) {
-    this.img = new Image(); // this.img = document.getElementById('image') <img id="image" src>
+    this.img = new Image(); 
     this.img.src = path;
   }
 
+  /**
+ * Draws the object on the provided canvas context using its image, position, and size.
+ * 
+ * @param {CanvasRenderingContext2D} ctx - The canvas 2D rendering context to draw the image on.
+ */
   draw(ctx) {
-    try {
       ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    } catch (e) {
-      console.log(e, this.img);
-    }
   }
 
   /**
@@ -31,20 +31,5 @@ class DrawableObject {
       img.src = path;
       this.imageCache[path] = img;
     });
-  }
-
-  drawFrame(ctx) {
-    if (
-      this instanceof Character ||
-      this instanceof Chicken ||
-      this instanceof ChickenSmall ||
-      this instanceof Endboss
-    ) {
-      ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.stroke();
-    }
   }
 }

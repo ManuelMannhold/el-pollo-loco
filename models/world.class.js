@@ -31,10 +31,21 @@ class World {
     this.run();
   }
 
+  /**
+ * Sets the current world context to the character.
+ * 
+ * - This allows the character to interact with the world, such as checking collisions.
+ */
   setworld() {
     this.character.world = this;
   }
 
+  /**
+ * Starts the game loop by setting intervals for collision checking and throwing objects.
+ * 
+ * - Calls `checkCollisions` every 50 milliseconds to handle interactions between objects.
+ * - Calls `checkThrowObjects` every 150 milliseconds to handle object throwing and collision detection.
+ */
   run() {
     setInterval(() => {
       this.checkCollisions();
@@ -44,6 +55,11 @@ class World {
     }, 150);
   }
 
+  /**
+ * Checks for collisions between the character and various objects (enemies, bottles, coins, and endboss).
+ * 
+ * - Calls specific methods for each type of object to handle collision logic.
+ */
   checkCollisions() {
     this.forEachEnemy();
     this.forEachBottles();
@@ -51,6 +67,11 @@ class World {
     this.forEndboss();
   }
 
+  /**
+ * Checks for collisions between the character and coins.
+ * 
+ * - If a collision is detected, the coin is collected, and the coin count is updated.
+ */
   forEachCoins() {
     this.level.coins.forEach((coins, index) => {
       if (this.character.isColliding(coins)) {
@@ -62,6 +83,11 @@ class World {
     });
   }
 
+  /**
+ * Checks for collisions between the character and bottles.
+ * 
+ * - If a collision is detected and the bottle count is less than 5, the bottle is collected.
+ */
   forEachBottles() {
     this.level.bottles.forEach((bottles, index) => {
       if (this.character.isColliding(bottles) && this.bottles < 5) {
@@ -74,6 +100,12 @@ class World {
     });
   }
 
+  /**
+ * Checks for collisions between the character and enemies.
+ * 
+ * - If the character collides with an enemy and is falling from above, the enemy is marked as killed.
+ * - If the character collides with an enemy while not falling, the character is hurt.
+ */
   forEachEnemy() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
@@ -89,6 +121,11 @@ class World {
     });
   }
 
+  /**
+ * Checks for collisions between the character and the endboss.
+ * 
+ * - If a collision is detected, the character is hurt and the status bar is updated.
+ */
   forEndboss() {
     if (this.character.isColliding(this.endboss)) {
       this.audios.hurt_sound.play();
@@ -97,6 +134,12 @@ class World {
     }
   }
 
+  /**
+ * Checks if the player has pressed the throw button and if there are bottles available to throw.
+ * 
+ * - Creates a new throwable bottle and adds it to the list of throwable objects.
+ * - Sets intervals to check for collisions between the bottle and enemies or the endboss.
+ */
   checkThrowObjects() {
     if (this.keyboard.D && this.bottles > 0) {
       let bottle = new ThrowableObject(
@@ -115,6 +158,13 @@ class World {
     }
   }
 
+  /**
+ * Checks for collisions between a thrown bottle and enemies.
+ * 
+ * - If the bottle collides with an enemy, the enemy is killed and removed from the list of throwable objects.
+ * 
+ * @param {ThrowableObject} bottle - The bottle to check for collisions.
+ */
   checkCollisionEnemyBottle(bottle) {
     this.level.enemies.forEach((enemy) => {
       if (bottle.isColliding(enemy)) {
@@ -125,23 +175,64 @@ class World {
     });
   }
 
+  /**
+ * Checks for collisions between a thrown bottle and the endboss.
+ * 
+ * - If the bottle collides with the endboss, the endboss's energy is reduced, and the splash effect is triggered.
+ * 
+ * @param {ThrowableObject} bottle - The bottle to check for collisions.
+ */
   checkCollisionEndbossBottle(bottle) {
     if (this.endboss.isColliding(bottle)) {
       this.throwableObject.splice(-1, 1);
       this.endboss.energy = this.endboss.energy - 20;
-      console.log("endboss energy", this.endboss.energy);
-
       this.endboss.bottleHurt = true;
       this.endboss.checkBottleHurt();
       this.statusBarBoss.setBoss(this.endboss.energy);
     }
   }
 
+  /**
+ * Clears the canvas and redraws all objects, including the character, level elements, and status bars.
+ * 
+ * - Calls `objectsAddToMap` to draw all level objects and `statusbarsAddToMap` to draw status bars.
+ * - Uses `requestAnimationFrame` for continuous redrawing.
+ */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(this.camera_x, 0);
+    this.objectsAddToMap();
+    this.addToMap(this.character);
+    this.ctx.translate(-this.camera_x, 0);
+    this.statusbarsAddToMap();
+    let self = this;
+    requestAnimationFrame(function () {
+      self.draw();
+    });
+  }
 
+  /**
+ * Adds status bars to the map.
+ * 
+ * - Adds the status bar elements to the map, including the character's status bars and any additional status indicators.
+ */
+  statusbarsAddToMap() {
+    this.addToMap(this.statusBar);
+    this.addToMap(this.statusBarCoins);
+    this.addToMap(this.statusBarBottle);
+    this.addToMap(this.statusBarBoss);
+    this.ctx.translate(this.camera_x, 0);
+    this.ctx.translate(-this.camera_x, 0);
+  }
+
+  /**
+ * Adds level objects to the map.
+ * 
+ * - Draws background objects, clouds, enemies, the endboss, throwable objects, coins, and bottles.
+ * 
+ * @param {Array|Object} objects - An array of objects or a single object to be added to the map.
+ */
+  objectsAddToMap() {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
@@ -149,25 +240,16 @@ class World {
     this.addObjectsToMap(this.throwableObject);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottles);
-    this.addToMap(this.character);
-
-    this.ctx.translate(-this.camera_x, 0); // Back
-    // --------Space for fixed objects---------
-    this.addToMap(this.statusBar);
-    this.addToMap(this.statusBarCoins);
-    this.addToMap(this.statusBarBottle);
-    this.addToMap(this.statusBarBoss);
-    this.ctx.translate(this.camera_x, 0); // Forwards
-
-    this.ctx.translate(-this.camera_x, 0);
-
-    //Draw wird immer wieder aufgerufen
-    let self = this;
-    requestAnimationFrame(function () {
-      self.draw();
-    });
   }
 
+  /**
+ * Adds multiple objects to the map.
+ * 
+ * - If the input is an array, iterates through the array and adds each object to the map.
+ * - If the input is a single object, adds it to the map directly.
+ * 
+ * @param {Array|Object} objects - An array of objects or a single object to be added to the map.
+ */
   addObjectsToMap(objects) {
     if (Array.isArray(objects)) {
       objects.forEach((o) => {
@@ -178,18 +260,31 @@ class World {
     }
   }
 
+  /**
+ * Adds an individual object to the map and handles image flipping if needed.
+ * 
+ * - Draws the object on the canvas and flips the image if the object is facing the other direction.
+ * 
+ * @param {Object} mo - The object to be added to the map.
+ */
   addToMap(mo) {
     if (mo.otherDirection) {
       this.flipImage(mo);
     }
     mo.draw(this.ctx);
-    mo.drawFrame(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
     }
   }
 
+  /**
+ * Flips the image horizontally for objects facing the other direction.
+ * 
+ * - Translates and scales the canvas context to flip the image.
+ * 
+ * @param {Object} mo - The object whose image needs to be flipped.
+ */
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
@@ -197,6 +292,14 @@ class World {
     mo.x = mo.x * -1;
   }
 
+
+  /**
+   * Restores the canvas context after flipping the image.
+   * 
+   * - Reverts the canvas context to its original state after flipping.
+   * 
+   * @param {Object} mo - The object whose image was flipped.
+   */
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();

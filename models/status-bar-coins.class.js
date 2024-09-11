@@ -20,12 +20,28 @@ class StatusBarCoins extends DrawableObject {
     this.setCoin(0);
   }
 
+  /**
+ * Sets the coin type and updates the object's image based on the current coin index.
+ * 
+ * - The coin type is stored in the `coin` property.
+ * - The object's image is updated by fetching the corresponding coin image from `IMAGES_COINS`.
+ * 
+ * @param {number} coin - The coin type or index (from 0 to 5) to be set.
+ */
   setCoin(coin) {
     this.coin = coin;
     let path = this.IMAGES_COINS[this.coinIndex()];
     this.img = this.imageCache[path];
   }
 
+  /**
+ * Returns the index of the current coin based on its value.
+ * 
+ * - Returns a value between 0 and 5, based on the value of the `coin` property.
+ * - If the `coin` value is greater than 5, it defaults to 5.
+ * 
+ * @returns {number} The index of the current coin (0 to 5).
+ */
   coinIndex() {
     if (this.coin == 0) {
       return 0;

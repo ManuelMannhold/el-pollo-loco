@@ -19,12 +19,27 @@ class StatusbarEndboss extends DrawableObject {
         this.setBoss(100);
     }
 
+    /**
+ * Sets the energy level of the boss and updates its image based on the current energy.
+ * 
+ * - The boss's energy is stored in the `energy` property.
+ * - The object's image is updated by fetching the corresponding boss image from `IMAGES_ENDBOSS`.
+ * 
+ * @param {number} energy - The energy level of the boss.
+ */
     setBoss(energy) {
         this.energy = energy;
         let path = this.IMAGES_ENDBOSS[this.endbossIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+ * Returns the index of the boss image based on its current energy level.
+ * 
+ * - The image index ranges from 0 (low energy) to 5 (full energy).
+ * 
+ * @returns {number} The index of the boss image corresponding to the current energy level.
+ */
     endbossIndex() {
         if (this.energy >= 100) {
             return 5;
