@@ -73,7 +73,7 @@ canvas {
     outline: none;
     border: none;
     background-color: orange;
-    padding: 20px 80px;
+    padding: 10px 80px;
     cursor: pointer;
     font-family: 'zabras', Arial, Helvetica, sans-serif;
     font-size: 60px;
@@ -101,6 +101,7 @@ canvas {
     justify-content: center;
     gap: 40px;
     padding: 20px;
+    margin-top: 40px;
 }
 
 #mute-button {
@@ -306,10 +307,7 @@ canvas {
         display: block !important;
     }
 
-    #steering {
-        display: flex;
-        font-size: 14px;
-    }
+
 
     #start {
         background-position: center;
