@@ -91,11 +91,11 @@ class Endboss extends MovableObject {
       this.playAnimation(this.IMAGES_ATTACK);
       this.attackCharacter();
     } else if (this.energy == 0) {
-        this.playAnimation(this.IMAGES_DEAD);
+      this.playAnimation(this.IMAGES_DEAD);
+      setTimeout(() => {
+        winGame();
         setTimeout(() => {
-          winGame();
-          setTimeout(() => {
-          window.open('index.html', '_self');
+          window.open("index.html", "_self");
         }, 2000);
       }, 3000);
     } else if (this.energy < 40) {
@@ -115,8 +115,7 @@ class Endboss extends MovableObject {
         this.count++;
         this.moveRight();
         this.otherDirection = true;
-      } else 
-      this.count = 0;
+      } else this.count = 0;
     }
   }
 
@@ -127,6 +126,7 @@ class Endboss extends MovableObject {
       this.moveLeft();
       this.otherDirection = false;
       if (this.attackCount > 200) {
+        this.playAnimation(this.IMAGES_WALKING);
         this.attackCount = 0;
         this.count = 200;
         this.attack = 0;

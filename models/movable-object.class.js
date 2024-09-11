@@ -69,15 +69,15 @@ class MovableObject extends DrawableObject {
 
   jump() {
     if (!this.isAboveGround()) {
-      this.jump_sound_character.play(); 
-      this.speedY = 30;  
+      this.world.audios.jump_sound_character.play();
+      this.speedY = 30;
     }
   }
 
   playAnimation(images) {
     let i = this.currentImage % images.length; // let i = 0 % 6 => 0, Rest 0;
     let path = images[i];
-    this.img = this.imageCache[path];    
+    this.img = this.imageCache[path];
     this.currentImage++;
   }
 }

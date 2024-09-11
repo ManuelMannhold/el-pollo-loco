@@ -1,16 +1,18 @@
 let canvas;
 let world;
+let audio;
 let keyboard = new Keyboard();
 
 gameStart = true;
 gameEnd = false;
-// let backgroundAudio = new Audio("audio/background-music.mp3");
+let backgroundAudio = new Audio("audio/background-music.mp3");
 let win_sound = new Audio("audio/win_sound.mp3");
 let lose_sound = new Audio("audio/lose_sound.mp3");
 
 function init() {
   canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
+  audio = new AudioCollection();
+  world = new World(canvas, keyboard, audio);
   initLevel();
   handleOrientation();
   console.log("My Charakter is", world.character);
@@ -127,10 +129,11 @@ function startGame() {
     start.classList.add("d-none");
     endscreen.classList.add("d-none");
   }
-  // backgroundAudio.play();
   world = null;
   initLevel();
   init();
+  backgroundAudio.play();
+  world.audios.playAudio();
   document.getElementById("buttons").classList.remove("d-none");
 }
 
@@ -144,11 +147,11 @@ function endGame() {
   if (gameEnd) {
     start.classList.add("d-none");
     endscreen.classList.remove("d-none");
-      lose_sound.play();
-      setTimeout(() => {
-        window.open("index.html", "_self")
-      }, 1500);
-    // this.backgroundAudio.pause();
+    lose_sound.play();
+    setTimeout(() => {
+      window.open("index.html", "_self");
+    }, 1500);
+    this.backgroundAudio.pause();
   }
 }
 
@@ -171,11 +174,11 @@ function clearAllIntervals() {
 }
 
 function quitGame() {
-  window.open('index.html', '_self');
+  window.open("index.html", "_self");
 }
 
 function restartGame() {
-  document.getElementById('endscreen').classList.add('d-none');
+  document.getElementById("endscreen").classList.add("d-none");
   clearAllIntervals();
   world = null;
   initLevel();
@@ -188,7 +191,15 @@ function toggleSoundImage() {
 
   if (mute.classList[1]) {
     backgroundAudio.volume = 0;
+    world.audios.pauseAudio();
+    backgroundAudio.volume = 0;
+    win_sound.volume = 0;
+    lose_sound.volume = 0;
   } else if (mute.classList[0]) {
     backgroundAudio.volume = 1;
+    world.audios.playAudio();
+    backgroundAudio.volume = 0.25;
+    win_sound.volume = 1;
+    lose_sound.volume = 1;
   }
 }

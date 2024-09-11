@@ -1,5 +1,6 @@
 class World {
-  character = new Character();
+  character = new Character(this);
+  chicken = new Chicken(this);
   level = level1;
   canvas;
   ctx;
@@ -16,16 +17,14 @@ class World {
   bottle = false;
   bottles = 0;
   coins = 0;
-  coins_pick_sound = new Audio("audio/coins_pick_sound.mp3");
-  hurt_sound = new Audio("audio/hurt_sound.mp3");
-  pick_bottle = new Audio("audio/pick_bottle.mp3");
-  chicken_dead = new Audio("audio/chicken_dead.mp3");
   bottleOnGround = false;
   splashedBottle = false;
+  audios;
 
-  constructor(canvas, keyboard) {
+  constructor(canvas, keyboard, audioCollection) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
+    this.audios = audioCollection;
     this.keyboard = keyboard;
     this.draw();
     this.setworld();
@@ -56,7 +55,7 @@ class World {
     this.level.coins.forEach((coins, index) => {
       if (this.character.isColliding(coins)) {
         this.coins++;
-        this.coins_pick_sound.play();
+        this.audios.coins_pick_sound.play();
         this.statusBarCoins.setCoin(this.coins);
         this.level.coins.splice(index, 1);
       }
@@ -66,7 +65,7 @@ class World {
   forEachBottles() {
     this.level.bottles.forEach((bottles, index) => {
       if (this.character.isColliding(bottles) && this.bottles < 5) {
-        this.pick_bottle.play();
+        this.audios.pick_bottle.play();
         this.bottles++;
         this.statusBarBottle.setBottle(this.bottles);
         this.bottle = true;
@@ -80,9 +79,9 @@ class World {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
           enemy.isKilled = true;
-          this.chicken_dead.play();
+          this.audios.chicken_dead.play();
         } else if (!enemy.isKilled) {
-          this.hurt_sound.play();
+          this.audios.hurt_sound.play();
           this.character.hit();
           this.statusBar.setPercentage(this.character.energy);
         }
@@ -92,7 +91,7 @@ class World {
 
   forEndboss() {
     if (this.character.isColliding(this.endboss)) {
-      this.hurt_sound.play();
+      this.audios.hurt_sound.play();
       this.character.hit();
       this.statusBar.setPercentage(this.character.energy);
     }
@@ -119,7 +118,7 @@ class World {
   checkCollisionEnemyBottle(bottle) {
     this.level.enemies.forEach((enemy) => {
       if (bottle.isColliding(enemy)) {
-        this.chicken_dead.play();
+        this.audios.chicken_dead.play();
         enemy.isKilled = true;
         this.throwableObject.splice(-1, 1);
       }
@@ -130,8 +129,8 @@ class World {
     if (this.endboss.isColliding(bottle)) {
       this.throwableObject.splice(-1, 1);
       this.endboss.energy = this.endboss.energy - 20;
-      console.log('endboss energy', this.endboss.energy);
-      
+      console.log("endboss energy", this.endboss.energy);
+
       this.endboss.bottleHurt = true;
       this.endboss.checkBottleHurt();
       this.statusBarBoss.setBoss(this.endboss.energy);
@@ -175,10 +174,9 @@ class World {
         this.addToMap(o);
       });
     } else {
-      this.addToMap(objects); 
+      this.addToMap(objects);
     }
   }
-  
 
   addToMap(mo) {
     if (mo.otherDirection) {
