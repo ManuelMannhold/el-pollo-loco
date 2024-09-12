@@ -80,42 +80,58 @@ function keyboardSteering() {
  */
 function buttonPressEvents() {
   document.getElementById("btn-left").addEventListener("touchstart", (e) => {
-    e.preventDefault();
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     keyboard.LEFT = true;
   });
 
   document.getElementById("btn-left").addEventListener("touchend", (e) => {
-    e.preventDefault();
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     keyboard.LEFT = false;
   });
 
   document.getElementById("btn-right").addEventListener("touchstart", (e) => {
-    e.preventDefault();
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     keyboard.RIGHT = true;
   });
 
   document.getElementById("btn-right").addEventListener("touchend", (e) => {
-    e.preventDefault();
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     keyboard.RIGHT = false;
   });
 
   document.getElementById("btn-throw").addEventListener("touchstart", (e) => {
-    e.preventDefault();
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     keyboard.D = true;
   });
 
   document.getElementById("btn-throw").addEventListener("touchend", (e) => {
-    e.preventDefault();
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     keyboard.D = false;
   });
 
   document.getElementById("btn-jump").addEventListener("touchstart", (e) => {
-    e.preventDefault();
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     keyboard.SPACE = true;
   });
 
   document.getElementById("btn-jump").addEventListener("touchend", (e) => {
-    e.preventDefault();
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     keyboard.SPACE = false;
   });
 }

@@ -92,9 +92,9 @@ canvas {
     padding: 5px 10px;
     display: flex;
     gap: 20px;
-    position: fixed;
-    right: 45%;
-    top: 20%;
+    position: absolute;
+    right: 40%;
+    top: 5%;
 }
 
 .button-container {
@@ -305,11 +305,17 @@ canvas {
 
 #close-x {
     position: sticky;
-    top: 0;
-    background-color: lightcyan;
-    border-radius: 50%;
-    padding: 5px;
+    top: 0px;
+    border-radius: 25%;
     cursor: pointer;
+    width: max-content;
+    margin-left: auto;
+    font-size: 35px;
+    text-shadow: none;
+}
+
+.canvas-body {
+    position: relative;
 }
 
 .icons-from {
@@ -417,6 +423,11 @@ canvas {
     }
 
     #button-container-info {
-        top: 20%;
+        top: 15%;
+    }
+
+    #start-button {
+        margin-top: 15px;
+        padding: 5px 40px;
     }
 }
