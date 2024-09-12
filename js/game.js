@@ -191,12 +191,17 @@ function endGame() {
   if (gameEnd) {
     start.classList.add("d-none");
     endscreen.classList.remove("d-none");
-    lose_sound.play();
-    setTimeout(() => {
-      window.open("index.html", "_self");
-    }, 1500);
-    this.backgroundAudio.pause();
+    world.audios.pauseAudio();
   }
+}
+
+function restartGame() {
+  world = null;
+  initLevel();
+  init();
+  backgroundAudio.play();
+  backgroundAudio.volume = 0.25;
+  world.audios.playAudio();
 }
 
 /**
