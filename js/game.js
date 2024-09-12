@@ -145,8 +145,10 @@ function buttonPressEvents() {
 function handleOrientation() {
   if (window.matchMedia("(orientation: landscape)").matches) {
     keyboardSteering();
+    console.log('landscape');
   } else if (window.matchMedia("(orientation: portrait)").matches) {
-    buttonPressEvents();
+    buttonPressEvents();    
+    console.log('portrait');
   }
 }
 
@@ -176,6 +178,14 @@ function startGame() {
   backgroundAudio.volume = 0.25;
   world.audios.playAudio();
   document.getElementById("buttons").classList.remove("d-none");
+}
+
+function showRules() {
+    document.getElementById('game-rules').classList.remove('d-none');
+}
+
+function closeRules() {
+  document.getElementById('game-rules').classList.add('d-none');
 }
 
 /**

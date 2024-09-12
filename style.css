@@ -69,6 +69,34 @@ canvas {
     max-width: 720px;
 }
 
+#lifebouy-startscreen {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+}
+
+#lifebouy-startscreen {
+    width: 10%;
+}
+
+.close-gamerules {
+    background-color: inherit;
+    outline: none;
+    border: none;
+    font-size: 40px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+
+#game-rules span {
+    color: red;
+    font-size: 48px;
+    text-decoration: underline;
+}
+
 .btn {
     border-radius: 15px;
     outline: none;
@@ -196,6 +224,29 @@ canvas {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.button-endscreen-container {
+    width: 720px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#game-rules {
+    width: 720px;
+    height: 480px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    padding: 10px;
+    background-color: orange;
+    gap: 20px;
 }
 
 #winscreen {
@@ -415,20 +466,28 @@ canvas {
         display: flex !important;
     }
 
-    #steering {
-        display: none;
+    .button-endscreen-container {
+        justify-content: space-around;
     }
 
-    #start {
-        max-width: unset;
-    }
-
-    #winscreen {
-        width: 100%;
+    .btn {
+        padding: 5px 40px;
     }
 
     #endscreen {
-        width: 100%;
+        padding: unset;
+    }
+
+    #imprint {
+        padding: 60px;
+    }
+
+    #lifebouy-startscreen {
+        top: 15%;
+    }
+
+    #steering {
+        display: none;
     }
 
     #button-container-info {

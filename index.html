@@ -58,9 +58,16 @@
     </div>
     <div id="start">
         <div class="button-container">
+            <img id="lifebouy-startscreen" src="./img/lifebuoy.png" alt="" onclick="showRules()">
             <img id="button-container-info" src="./img/info.png" alt="" onclick="openImprint()">
             <button id="start-button" class="btn" onclick="startGame()">Start</button>
         </div>
+    </div>
+    <div id="game-rules" class="d-none">
+        <button class="close-gamerules">X</button>
+        <h2>The fastest way to win!</h2>
+        <p>- To defeat the Small Chicken, you need <span>1</span> bottle or you can jump on its head.</p>
+        <p>- To defeat the Boss, you need <span>5</span> bottles. If you have fewer than <span>5</span> bottles, it's Game Over!</p>
     </div>
     <div id="imprint" class="d-none">
         <div id="close-x" onclick="closeImprint()">X</div>
@@ -144,8 +151,10 @@
         </div>
     </div>
     <div id="endscreen" class="d-none">
-        <button class="btn" onclick="restartGame()">Restart</button>
-        <button class="btn" onclick="quitGame()">Back to Menu</button>
+        <div class="button-endscreen-container">
+            <button class="btn" onclick="restartGame()">Restart</button>
+            <button class="btn" onclick="quitGame()">Back to Menu</button>
+        </div>
     </div>
     <div id="winscreen" class="d-none">
         <img src="img/9_intro_outro_screens/win/win_1.png" alt="">
