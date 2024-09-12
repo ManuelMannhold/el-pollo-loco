@@ -62,6 +62,7 @@
 
     .button-endscreen-container {
         justify-content: space-around;
+        gap: 60px;
     }
 
     .btn {

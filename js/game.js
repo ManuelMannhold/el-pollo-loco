@@ -213,27 +213,6 @@ function endGame() {
 }
 
 /**
- * Restart the game by resetting the world, re-initializing the level and game settings, 
- * and starting the background audio with a set volume.
- * 
- * The function performs the following steps:
- * 1. Clears the current game state by setting `world` to null.
- * 2. Re-initializes the game level by calling `initLevel()`.
- * 3. Re-initializes the game environment, including the canvas, keyboard controls, and audio, by calling `init()`.
- * 4. Starts the background music playback and sets its volume to 25%.
- * 5. Ensures that all game-related sounds are reactivated through the world's audio system.
- */
-function restartGame() {
-  world = null;
-  initLevel();
-  init();
-  backgroundAudio.play();
-  backgroundAudio.volume = 0.25;
-  world.audios.playAudio();
-  document.getElementById('endscreen').classList.add('d-none');
-}
-
-/**
  * Handles the win condition by displaying the win screen and playing win sound.
  * 
  * - Stops all intervals and hides game buttons.
@@ -284,6 +263,7 @@ function clearAllIntervals() {
  */
 function restartGame() {
   document.getElementById("endscreen").classList.add("d-none");
+  document.getElementById('winscreen').classList.add('d-none');
   clearAllIntervals();
   world = null;
   initLevel();
