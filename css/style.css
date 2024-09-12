@@ -81,14 +81,15 @@ canvas {
 }
 
 .close-gamerules {
-    background-color: inherit;
-    outline: none;
-    border: none;
-    font-size: 40px;
-    position: absolute;
-    top: 15px;
-    right: 20px;
+    position: sticky;
+    top: 0px;
+    border-radius: 25%;
     cursor: pointer;
+    width: max-content;
+    font-size: 35px;
+    text-shadow: none;
+    border: none;
+    background-color: inherit;
 }
 
 #game-rules span {

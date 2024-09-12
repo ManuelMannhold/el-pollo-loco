@@ -81,13 +81,13 @@ class Endboss extends MovableObject {
   }
 
   /**
- * Handles the state transitions of the boss character when hurt by a bottle, attacking, or dead.
- * 
- * - Plays the hurt animation if the character is hurt by a bottle and its energy is above 0.
- * - If the character is in attack mode, it plays the attack animation and calls `attackCharacter()`.
- * - If the character's energy is 0, it plays the death animation, triggers the winGame sequence, and redirects the player to the index page after a delay.
- * - Otherwise, it plays an alert or walking animation based on the character's energy level.
- */
+  * Handles character state based on energy level and whether the character was hurt by a bottle.
+  * 
+  * - If the character is hurt by a bottle (`bottleHurt`) and has remaining energy, it plays the hurt animation and temporarily disables attack.
+  * - If the character is ready to attack (`attack`), it plays the attack animation and triggers the attack.
+  * - If the character's energy reaches 0, it plays the death animation and triggers the win condition after 3 seconds.
+  * - If the character's energy is below 40 but greater than 0, it plays an alert animation; otherwise, it plays the walking animation.
+  */
   checkBottleHurt() {
     if (this.bottleHurt && this.energy > 0) {
       this.playAnimation(this.IMAGES_HURT);
@@ -97,7 +97,7 @@ class Endboss extends MovableObject {
       this.attackCharacter();
     } else if (this.energy == 0) {
       this.playAnimation(this.IMAGES_DEAD);
-      setTimeout(() => { winGame(); setTimeout(() => window.open("index.html", "_self"), 2000); }, 3000);
+      setTimeout(() => { winGame() }, 3000);
     } else {
       this.playAnimation(this.energy < 40 ? this.IMAGES_ALERT : this.IMAGES_WALKING);
     }

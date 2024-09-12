@@ -145,8 +145,9 @@ function buttonPressEvents() {
 function handleOrientation() {
   if (window.matchMedia("(orientation: landscape)").matches) {
     keyboardSteering();
+    buttonPressEvents();
   } else if (window.matchMedia("(orientation: portrait)").matches) {
-    buttonPressEvents();    
+    buttonPressEvents();
   }
 }
 
@@ -178,10 +179,18 @@ function startGame() {
   document.getElementById("buttons").classList.remove("d-none");
 }
 
+/**
+ * Displays the game rules by removing the 'd-none' class, making the rules visible.
+ * This function targets the element with the ID 'game-rules'.
+ */
 function showRules() {
-    document.getElementById('game-rules').classList.remove('d-none');
+  document.getElementById('game-rules').classList.remove('d-none');
 }
 
+/**
+ * Hides the game rules by adding the 'd-none' class, making the rules hidden.
+ * This function targets the element with the ID 'game-rules'.
+ */
 function closeRules() {
   document.getElementById('game-rules').classList.add('d-none');
 }
@@ -231,9 +240,7 @@ function restartGame() {
  */
 function winGame() {
   let win = document.getElementById("winscreen");
-
   gameWin = true;
-
   if (gameWin) {
     win.classList.remove("d-none");
     win_sound.play();
