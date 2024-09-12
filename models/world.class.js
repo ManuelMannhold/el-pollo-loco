@@ -53,6 +53,9 @@ class World {
     setInterval(() => {
       this.checkThrowObjects();
     }, 150);
+    setInterval(() => {
+      this.bottlesForEndboss();
+    }, 150);
   }
 
   /**
@@ -155,6 +158,12 @@ class World {
       setInterval(() => {
         this.checkCollisionEnemyBottle(bottle);
       }, 10);
+    }
+  }
+
+  bottlesForEndboss() {
+    if(this.endboss.energy > 0 && this.level.bottles < 5) {
+      endGame();
     }
   }
 
