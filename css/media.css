@@ -1,0 +1,95 @@
+/*Smartphones-------*/
+@media only screen and (max-width: 720px) {
+    #canvas {
+        width: 100%;
+    }
+
+    #start {
+        display: block;
+        width: 100%;
+    }
+}
+
+/*Smartphones-------*/
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+        width: 100%;
+    }
+
+    h1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 500px) and (orientation: landscape) {
+    #landscape {
+        display: block !important;
+    }
+
+    #start {
+        background-position: center;
+    }
+
+    #endscreen {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .btn {
+        padding: 0 40px;
+    }
+
+    #buttons {
+        top: 0;
+    }
+}
+
+@media only screen and (width >=500px) {
+    #landscape {
+        display: none !important;
+    }
+
+    #start {
+        background-position: center;
+    }
+}
+
+@media (pointer: coarse) and (orientation: landscape) {
+    #steering-buttons-mobile {
+        display: flex !important;
+    }
+
+    .button-endscreen-container {
+        justify-content: space-around;
+    }
+
+    .btn {
+        padding: 5px 40px;
+    }
+
+    #endscreen {
+        padding: unset;
+    }
+
+    #imprint {
+        padding: 60px;
+    }
+
+    #lifebouy-startscreen {
+        top: 15%;
+    }
+
+    #steering {
+        display: none;
+    }
+
+    #button-container-info {
+        top: 15%;
+    }
+
+    #start-button {
+        margin-top: 15px;
+        padding: 5px 40px;
+    }
+}

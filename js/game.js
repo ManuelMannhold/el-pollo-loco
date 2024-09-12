@@ -145,10 +145,8 @@ function buttonPressEvents() {
 function handleOrientation() {
   if (window.matchMedia("(orientation: landscape)").matches) {
     keyboardSteering();
-    console.log('landscape');
   } else if (window.matchMedia("(orientation: portrait)").matches) {
     buttonPressEvents();    
-    console.log('portrait');
   }
 }
 

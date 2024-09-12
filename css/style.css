@@ -15,7 +15,7 @@ body {
     justify-content: center;
     font-family: 'zabras', Arial, Helvetica, sans-serif;
     background-color: lightgray;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('./img/pexels-background.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('../img/pexels-background.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -56,7 +56,7 @@ canvas {
 }
 
 #start {
-    background-image: url('./img/9_intro_outro_screens/start/startscreen_1.png');
+    background-image: url('../img/9_intro_outro_screens/start/startscreen_1.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center right -60px;
@@ -146,7 +146,7 @@ canvas {
 }
 
 #quit-button-game {
-    background-image: url('./img/10_buttons/quit.png');
+    background-image: url('../img/10_buttons/quit.png');
     background-position: center;
     background-size: 40px;
     background-repeat: no-repeat;
@@ -179,7 +179,7 @@ canvas {
 }
 
 .mute-off {
-    background-image: url('./img/10_buttons/sound-on.png');
+    background-image: url('../img/10_buttons/sound-on.png');
     background-position: center;
     background-size: 30px;
     background-repeat: no-repeat;
@@ -187,7 +187,7 @@ canvas {
 }
 
 .mute-on {
-    background-image: url('./img/10_buttons/sound-off.png');
+    background-image: url('../img/10_buttons/sound-off.png');
     background-position: center;
     background-size: 30px;
     background-repeat: no-repeat;
@@ -195,7 +195,7 @@ canvas {
 }
 
 #fullscreen {
-    background-image: url('./img/10_buttons/fullscreen.png');
+    background-image: url('../img/10_buttons/fullscreen.png');
     background-position: center;
     background-size: 30px;
     background-repeat: no-repeat;
@@ -220,7 +220,7 @@ canvas {
     overflow: hidden;
     width: 720px;
     height: 480px;
-    background-image: url("./img/9_intro_outro_screens/game_over/oh\ no\ you\ lost!.png");
+    background-image: url("../img/9_intro_outro_screens/game_over/oh\ no\ you\ lost!.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -256,7 +256,10 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: orange;
+    background-color: maroon;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 #winscreen img {
@@ -401,101 +404,4 @@ canvas {
 
 .arrow-right-rotatedZ-270 {
     transform: rotateZ(270deg);
-}
-
-
-/*Smartphones-------*/
-@media only screen and (max-width: 720px) {
-    #canvas {
-        width: 100%;
-    }
-
-    #start {
-        display: block;
-        width: 100%;
-    }
-}
-
-/*Smartphones-------*/
-@media only screen and (max-height: 480px) {
-    canvas {
-        height: 100vh;
-        width: 100%;
-    }
-
-    h1 {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 500px) and (orientation: landscape) {
-    #landscape {
-        display: block !important;
-    }
-
-    #start {
-        background-position: center;
-    }
-
-    #endscreen {
-        width: 100%;
-        height: 100vh;
-    }
-
-    .btn {
-        padding: 0 40px;
-    }
-
-    #buttons {
-        top: 0;
-    }
-}
-
-@media only screen and (width >=500px){
-    #landscape {
-        display: none !important;
-    }
-
-    #start {
-        background-position: center;
-    }
-}
-
-@media (pointer: coarse) and (orientation: landscape) {
-    #steering-buttons-mobile {
-        display: flex !important;
-    }
-
-    .button-endscreen-container {
-        justify-content: space-around;
-    }
-
-    .btn {
-        padding: 5px 40px;
-    }
-
-    #endscreen {
-        padding: unset;
-    }
-
-    #imprint {
-        padding: 60px;
-    }
-
-    #lifebouy-startscreen {
-        top: 15%;
-    }
-
-    #steering {
-        display: none;
-    }
-
-    #button-container-info {
-        top: 15%;
-    }
-
-    #start-button {
-        margin-top: 15px;
-        padding: 5px 40px;
-    }
 }

@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Pollo Loco</title>
     <link rel="shortcut icon" href="./img/9_intro_outro_screens/start/startscreen_1.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/media.css">
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/character.class.js"></script>
@@ -67,7 +68,8 @@
         <button class="close-gamerules" onclick="closeRules()">X</button>
         <h2>The fastest way to win!</h2>
         <p>- To defeat the Small Chicken, you need <span>1</span> bottle or you can jump on its head.</p>
-        <p>- To defeat the Boss, you need <span>5</span> bottles. If you have fewer than <span>5</span> bottles, it's Game Over!</p>
+        <p>- To defeat the Boss, you need <span>5</span> bottles. If you have fewer than <span>5</span> bottles, it's
+            Game Over!</p>
     </div>
     <div id="imprint" class="d-none">
         <div id="close-x" onclick="closeImprint()">X</div>
@@ -158,6 +160,8 @@
     </div>
     <div id="winscreen" class="d-none">
         <img src="img/9_intro_outro_screens/win/win_1.png" alt="">
+        <button class="btn" onclick="restartGame()">Restart</button>
+        <button class="btn" onclick="quitGame()">Back to Menu</button>
     </div>
 
     <div id="landscape">
