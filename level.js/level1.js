@@ -95,14 +95,14 @@ function initLevel() {
     [new Cloud(), new Cloud(), new Cloud()],
     [new Coins(), new Coins(), new Coins(), new Coins(), new Coins()],
     [
-      // new Chicken(),
+      new Chicken(),
       // new Chicken(),
       // new Chicken(),
       // new Chicken(),
       // new ChickenSmall(),
       // new ChickenSmall(),
       // new ChickenSmall(),
-      // new ChickenSmall(),
+      new ChickenSmall(),
     ],
     [
       new Bottle(),

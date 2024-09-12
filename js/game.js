@@ -74,9 +74,10 @@ function keyboardSteering() {
 }
 
 /**
- * Handles touch events for on-screen buttons.
+ * Sets up touch event listeners for virtual buttons (left, right, throw, and jump) to control the game.
  * 
- * - Adds event listeners for touchstart and touchend to control the game through touch buttons.
+ * - Each button registers 'touchstart' and 'touchend' events that correspond to specific keyboard actions.
+ * - Prevents default browser behavior on cancelable touch events to ensure proper game input handling.
  */
 function buttonPressEvents() {
   document.getElementById("btn-left").addEventListener("touchstart", (e) => {
@@ -260,6 +261,12 @@ function restartGame() {
   world.audios.playAudio();
 }
 
+/**
+ * Quits the current game and redirects the user to the homepage (index.html).
+ * 
+ * - This function opens the 'index.html' file in the same browser tab by using '_self' as the target.
+ * - It simulates quitting or ending the game and bringing the user back to the main page.
+ */
 function quitGame() {
   window.open('index.html', '_self')
 }
