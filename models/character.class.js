@@ -121,12 +121,13 @@ class Character extends MovableObject {
  * and adjusts the camera's x-coordinate to follow the character.
  */
   walkingFunctionInterval() {
+    let endBossPosition = this.world.endboss.x;
     let isMoving = false;
 
-    if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+    if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && this.x < endBossPosition) {
       this.moveRight();
       this.otherDirection = false;
-      isMoving;
+      isMoving = true;
     }
     if (this.world.keyboard.LEFT && this.x > 0) {
       this.moveLeft();
