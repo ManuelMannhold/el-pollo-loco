@@ -29,6 +29,9 @@ class World {
     this.draw();
     this.setworld();
     this.run();
+    setInterval(() => {
+      this.aviableBottles();
+    }, 100);
   }
 
   /**
@@ -249,6 +252,17 @@ class World {
     this.addObjectsToMap(this.throwableObject);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottles);
+  }
+
+  aviableBottles(){
+    let aviableBottles = document.getElementById('aviable-bottles');
+
+    aviableBottles.innerHTML = `
+      <div>
+      Aviable Bottles =
+        ${this.level.bottles.length}
+       </div> 
+    `;
   }
 
   /**

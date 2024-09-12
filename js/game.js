@@ -213,6 +213,7 @@ function restartGame() {
   backgroundAudio.play();
   backgroundAudio.volume = 0.25;
   world.audios.playAudio();
+  document.getElementById('endscreen').classList.add('d-none');
 }
 
 /**

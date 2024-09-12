@@ -314,6 +314,15 @@ canvas {
     text-shadow: none;
 }
 
+#aviable-bottles {
+    width: 140px;
+    height: 40px;
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    font-size: 24px;
+}
+
 .canvas-body {
     position: relative;
 }
