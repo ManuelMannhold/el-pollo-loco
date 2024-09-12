@@ -52,7 +52,7 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
-    }, 50);
+    }, 20);
     setInterval(() => {
       this.checkThrowObjects();
     }, 150);

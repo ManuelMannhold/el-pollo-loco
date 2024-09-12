@@ -15,6 +15,10 @@ class AudioCollection {
     this.pauseAudio();
   }
 
+  /**
+ * Mutes all game audio by setting the volume of each sound to 0.
+ * This method affects various sound effects including walking, snoring, jumping, coin picking, hurt sound, bottle picking, and background audio.
+ */
   pauseAudio() {
     this.walking_sound.volume = 0;
     this.snore_sound.volume = 0;
@@ -29,6 +33,10 @@ class AudioCollection {
     this.bottlesplash.volume = 0;
   }
 
+  /**
+ * Restores all game audio by setting the volume of each sound back to 1.
+ * This method reactivates the same sound effects muted by `pauseAudio()`, such as walking, snoring, jumping, and more.
+ */
   playAudio() {
     this.walking_sound.volume = 1;
     this.snore_sound.volume = 1;

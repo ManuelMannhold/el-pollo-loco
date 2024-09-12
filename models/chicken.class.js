@@ -6,7 +6,7 @@ class Chicken extends MovableObject {
   isKilled = false;
   walking_sound_chicken = new Audio("audio/chicken_walk.mp3");
   offset = {
-    top: -60,
+    top: 0,
     bottom: 0,
     left: 0,
     right: 0,
