@@ -4,7 +4,6 @@ class Chicken extends MovableObject {
   y = 380;
   energy = true;
   isKilled = false;
-  walking_sound_chicken = new Audio("audio/chicken_walk.mp3");
   offset = {
     top: 0,
     bottom: 0,

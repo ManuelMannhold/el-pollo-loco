@@ -51,6 +51,7 @@ class ThrowableObject extends MovableObject {
         this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
         this.x += 8;
       } else if (world.character.otherDirection) {
+        this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
         this.x -= 8;
       }
       if (this.y >= 360 && !splashed) this.triggerSplash(), splashed = true, world.bottleOnGround = false;
