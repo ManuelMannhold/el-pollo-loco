@@ -33,15 +33,15 @@ class ThrowableObject extends MovableObject {
   }
 
   /**
- * Throws the bottle by applying gravity and moving it horizontally.
- * 
- * - The vertical speed is set to 30 to simulate the throw.
- * - Gravity is applied to make the bottle fall.
- * - The bottle rotates while moving, and it triggers a splash when it hits the ground or an enemy.
- * - If the bottle hits an enemy or the boss, it triggers a splash animation and sound.
- * 
- * @param {boolean} splashed - A flag to determine whether the bottle has splashed.
- */
+   * Simulates throwing an object (e.g., a bottle) and handles its animation and interactions.
+   *
+   * - Sets the vertical speed (`speedY`) to initiate the throw and applies gravity to simulate the object falling.
+   * - Uses a `setInterval` to repeatedly update the object's position and animation.
+   * - Checks if the object is in the air and whether it should play the rotating bottle animation.
+   * - Adjusts the object's horizontal movement based on the character's direction.
+   * - Triggers a splash effect if the object hits the ground or collides with an enemy or the boss.
+   * - Sets flags and updates game state accordingly, including marking the bottle as splashed and updating whether the bottle is on the ground.
+   */
   throw() {
     this.speedY = 30;
     this.applyGravitiy();
@@ -59,33 +59,33 @@ class ThrowableObject extends MovableObject {
   }
 
   /**
- * Checks if the thrown bottle collides with any enemy in the level.
- * 
- * - Iterates over all enemies to see if the bottle is colliding with any of them.
- * 
- * @returns {boolean} True if the bottle hits an enemy, false otherwise.
- */
+  * Checks if the thrown bottle collides with any enemy in the level.
+  * 
+  * - Iterates over all enemies to see if the bottle is colliding with any of them.
+  * 
+  * @returns {boolean} True if the bottle hits an enemy, false otherwise.
+  */
   hitsEnemy() {
     return world.level.enemies.some(enemy => this.isColliding(enemy));
   }
 
   /**
- * Checks if the thrown bottle collides with the boss.
- * 
- * - Uses the `isColliding` method to determine if the bottle hits the boss.
- * 
- * @returns {boolean} True if the bottle hits the boss, false otherwise.
- */
+  * Checks if the thrown bottle collides with the boss.
+  * 
+  * - Uses the `isColliding` method to determine if the bottle hits the boss.
+  * 
+  * @returns {boolean} True if the bottle hits the boss, false otherwise.
+  */
   hitsBoss() {
     return this.isColliding(world.endboss);
   }
 
   /**
- * Triggers the splash animation and plays the splash sound effect when the bottle hits an enemy, boss, or the ground.
- * 
- * - The splash animation is loaded and played.
- * - The bottle's horizontal position is adjusted slightly to simulate the impact.
- */
+  * Triggers the splash animation and plays the splash sound effect when the bottle hits an enemy, boss, or the ground.
+  * 
+  * - The splash animation is loaded and played.
+  * - The bottle's horizontal position is adjusted slightly to simulate the impact.
+  */
   triggerSplash() {
     this.loadImages(this.IMAGES_SPLASH);
     this.playAnimation(this.IMAGES_SPLASH);
@@ -94,10 +94,10 @@ class ThrowableObject extends MovableObject {
   }
 
   /**
- * Animates the bottle splash after it hits the ground or an enemy.
- * 
- * - The splash animation plays if the `splashedBottle` flag is true.
- */
+  * Animates the bottle splash after it hits the ground or an enemy.
+  * 
+  * - The splash animation plays if the `splashedBottle` flag is true.
+  */
   animate() {
     if (world.splashedBottle == true) {
       setInterval(() => {
