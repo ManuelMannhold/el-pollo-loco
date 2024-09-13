@@ -119,9 +119,9 @@ class World {
           enemy.isKilled = true;
           this.audios.chicken_dead.play();
         } else if (!enemy.isKilled) {
-          this.audios.hurt_sound.play();
-          this.character.hit();
-          this.statusBar.setPercentage(this.character.energy);
+            this.audios.hurt_sound.play();
+            this.character.hit();
+            this.statusBar.setPercentage(this.character.energy);
         }
       }
     });

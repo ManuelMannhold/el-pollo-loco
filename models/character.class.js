@@ -10,10 +10,10 @@ class Character extends MovableObject {
   isSleep = false;
   bottle = new Bottle();
   offset = {
-    top: 104,
+    top: 120,
     bottom: 0,
-    left: 20,
-    right: 40,
+    left: 30,
+    right: 30,
   };
 
   IMAGES_WALKING = [
