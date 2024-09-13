@@ -74,7 +74,7 @@ class MovableObject extends DrawableObject {
  * - Records the time of the last hit for tracking purposes.
  */
   hit() {
-    this.energy -= 5;
+    this.energy -= 1;
     if (this.energy < 0) {
       this.energy = 0;
     } else {

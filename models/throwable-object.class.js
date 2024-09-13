@@ -55,7 +55,7 @@ class ThrowableObject extends MovableObject {
         this.x -= 8;
       }
       if (this.y >= 360 && !splashed) this.triggerSplash(), splashed = true, world.bottleOnGround = false;
-      if (this.hitsEnemy() || this.hitsBoss()) this.triggerSplash(), splashed = true;
+      if (this.hitsEnemy() || this.hitsBoss() && !splashed) this.triggerSplash(), splashed = true;
     }, 25);
   }
 

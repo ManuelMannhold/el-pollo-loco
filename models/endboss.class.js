@@ -77,7 +77,7 @@ class Endboss extends MovableObject {
   animate() {
     setInterval(() => {
       this.checkBottleHurt();
-    }, 400);
+    }, 100);
 
     setInterval(() => {
       this.moveEndboss();
