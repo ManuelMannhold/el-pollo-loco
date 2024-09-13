@@ -28,6 +28,15 @@ class Chicken extends MovableObject {
     this.animate();
   }
 
+  /**
+  * Animates the character or object by setting up two intervals for movement and handling death animation.
+  *
+  * - The first interval controls the leftward movement of the object, updating at 60 frames per second.
+  * - The second interval handles the death logic:
+  *   - If the object has energy but is marked as killed, it transitions to the death state by setting `energy` to false, marking it as killed, and loading the 'dead' image. 
+  *   - After a delay of 1 second, the object is removed from the world.
+  *   - If the object is not killed, it continuously plays the walking animation.
+  */
   animate() {
     setInterval(() => {
       if (!this.isKilled) {

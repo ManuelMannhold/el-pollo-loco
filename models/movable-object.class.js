@@ -12,6 +12,14 @@ class MovableObject extends DrawableObject {
     right: 0,
   };
 
+  /**
+  * Applies gravity to an object by adjusting its vertical position (`y`) and speed (`speedY`) over time.
+  *
+  * - This function is executed at a rate of 25 frames per second (40ms interval).
+  * - If the object is above the ground or moving upwards (`speedY > 0`), the function will:
+  *   1. Decrease the `y` position by the current `speedY`, causing the object to move upwards.
+  *   2. Gradually decrease `speedY` by the object's `acceleration` to simulate the effect of gravity, causing it to slow down as it ascends and eventually fall back down.
+  */
   applyGravitiy() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -80,8 +88,8 @@ class MovableObject extends DrawableObject {
  * @returns {boolean} True if the object was hurt in the last second, false otherwise.
  */
   isHurt() {
-    let timepassed = new Date().getTime() - this.lastHit; 
-    timepassed = timepassed / 1000; 
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
 
     return timepassed < 1;
   }

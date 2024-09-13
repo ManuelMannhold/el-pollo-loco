@@ -46,8 +46,12 @@ class ThrowableObject extends MovableObject {
     this.applyGravitiy();
     let splashed = false;
     setInterval(() => {
-      if (!world.splashedBottle && !splashed) this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
-      this.x += 8;
+      if (!world.splashedBottle && !splashed && this.otherDirection) {
+        this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
+        this.x += 8;
+      } else {
+        this.x -= 8;
+      }
       if (this.y >= 360 && !splashed) this.triggerSplash(), splashed = true, world.bottleOnGround = false;
       if (this.hitsEnemy() || this.hitsBoss()) this.triggerSplash(), splashed = true;
     }, 25);

@@ -14,10 +14,16 @@ class Coins extends MovableObject {
     this.loadImages(this.IMAGES_COINS);
 
     this.x = 200 + Math.random() * 3600;
-    this.y = 0 + Math.random() * 200;
+    this.y = 0 + Math.random() * 250;
     this.animate();
   }
 
+  /**
+  * Animates the coin by cycling through the coin images.
+  *
+  * - This function sets up an interval that runs every 350 milliseconds.
+  * - It calls the `playAnimation` method, passing the array of coin images (`IMAGES_COINS`), to cycle through and display the animation.
+  */
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_COINS);

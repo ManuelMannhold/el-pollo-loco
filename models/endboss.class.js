@@ -66,6 +66,14 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
+  /**
+  * Animates the endboss by setting up recurring actions.
+  *
+  * - The method uses three separate intervals:
+  *   1. Every 400 milliseconds, it checks whether the endboss has been hurt by a bottle using `checkBottleHurt()`.
+  *   2. Every frame (running at 60 frames per second), it moves the endboss using `moveEndboss()`.
+  *   3. Every 10 milliseconds, it checks for an attack on the character using `attackCharacter()`.
+  */
   animate() {
     setInterval(() => {
       this.checkBottleHurt();

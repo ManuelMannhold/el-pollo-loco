@@ -91,6 +91,17 @@ class Character extends MovableObject {
     this.animate();
   }
 
+  /**
+ * Continuously animates the character by setting up various intervals to handle
+ * walking, jumping, movement, and other character states such as being hurt or dead.
+ * 
+ * The function performs the following actions:
+ * 1. Sets up an interval to handle the character's walking animation, executed every 12 milliseconds.
+ * 2. Sets up an interval to handle the character's dead state, jumping, movement, and hurt state checks, executed every 150 milliseconds.
+ * 3. Sets up a longer interval to stop certain animations after 6000 milliseconds.
+ * 
+ * Note: Multiple intervals are used to independently control different aspects of the character's animation and state.
+ */
   animate() {
     setInterval(() => {
       this.walkingFunctionInterval();
