@@ -46,18 +46,24 @@ class ThrowableObject extends MovableObject {
     this.speedY = 30;
     this.applyGravitiy();
     let splashed = false;
+    const direction = world.character.otherDirection ? -1 : 1;
+
     setInterval(() => {
-      if (!world.splashedBottle && !splashed && !world.character.otherDirection) {
-        this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
-        this.x += 8;
-      } else if (world.character.otherDirection) {
-        this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
-        this.x -= 8;
-      }
-      if (this.y >= 360 && !splashed) this.triggerSplash(), splashed = true, world.bottleOnGround = false;
-      if (this.hitsEnemy() || this.hitsBoss() && !splashed) this.triggerSplash(), splashed = true;
+        if (!world.splashedBottle && !splashed) {
+            this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
+            this.x += 8 * direction;
+        }
+        if (this.y >= 360 && !splashed) {
+            this.triggerSplash();
+            splashed = true;
+            world.bottleOnGround = false;
+        }
+        if ((this.hitsEnemy() || this.hitsBoss()) && !splashed) {
+            this.triggerSplash();
+            splashed = true;
+        }
     }, 25);
-  }
+}
 
   /**
   * Checks if the thrown bottle collides with any enemy in the level.
