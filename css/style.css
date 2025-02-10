@@ -19,7 +19,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
 }
 
@@ -383,9 +383,6 @@ canvas {
 }
 
 .icons-from {
-    position: fixed;
-    top: 10px;
-    left: 20px;
     font-size: 20px;
     letter-spacing: 2px;
 }
