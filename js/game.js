@@ -20,7 +20,6 @@ function init() {
   canvas = document.getElementById("canvas");
   audio = new AudioCollection();
   world = new World(canvas, keyboard, audio);
-  initLevel();
   handleOrientation();
 }
 
@@ -164,15 +163,19 @@ handleOrientation();
 function startGame() {
   let start = document.getElementById("start");
   let endscreen = document.getElementById("endscreen");
+  let mobileButtons = document.getElementById('steering-buttons-mobile');
+
   gameStart = true;
   gameEnd = false;
   if (gameStart) {
     start.classList.add("d-none");
     endscreen.classList.add("d-none");
+    mobileButtons.classList.remove('d-none');
   }
   world = null;
   initLevel();
   init();
+
   backgroundAudio.play();
   backgroundAudio.volume = 0.25;
   world.audios.playAudio();
@@ -203,12 +206,15 @@ function closeRules() {
 function endGame() {
   let start = document.getElementById("start");
   let endscreen = document.getElementById("endscreen");
+  let steeringMobile = document.getElementById('steering-buttons-mobile');
+
   gameStart = false;
   gameEnd = true;
   if (gameEnd) {
     start.classList.add("d-none");
     endscreen.classList.remove("d-none");
     world.audios.pauseAudio();
+    steeringMobile.classList.add('d-none');
   }
 }
 
@@ -280,7 +286,10 @@ function restartGame() {
  * - It simulates quitting or ending the game and bringing the user back to the main page.
  */
 function quitGame() {
+  let steeringMobile = document.getElementById('steering-buttons-mobile');
+  steeringMobile.classList.add('d-none');
   window.open('index.html', '_self')
+
 }
 
 /**

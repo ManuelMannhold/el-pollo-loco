@@ -49,17 +49,13 @@
     #landscape {
         display: none !important;
     }
-
+    
     #start {
         background-position: center;
     }
 }
 
 @media (pointer: coarse) and (orientation: landscape) {
-    #steering-buttons-mobile {
-        display: flex !important;
-    }
-
     .button-endscreen-container {
         justify-content: space-around;
         gap: 60px;
@@ -94,3 +90,10 @@
         padding: 5px 40px;
     }
 }
+
+@media (pointer: fine) {
+    #steering-buttons-mobile {
+      display: none; /* Versteckt die Buttons auf Geräten mit präziser Eingabe (z. B. Maus) */
+    }
+  }
+  
