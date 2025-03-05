@@ -162,9 +162,9 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         setTimeout(() => {
           endGame();
-        }, 1000);
+        }, 2000);
       }
-    }, 4000);
+    }, 300);
   }
 
   /**
