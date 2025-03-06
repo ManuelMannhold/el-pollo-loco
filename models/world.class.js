@@ -29,6 +29,7 @@ class World {
     this.draw();
     this.setworld();
     this.run();
+    this.aviableBottles();
   }
 
   /**
