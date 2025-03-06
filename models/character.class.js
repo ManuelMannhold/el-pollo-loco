@@ -92,16 +92,16 @@ class Character extends MovableObject {
   }
 
   /**
- * Continuously animates the character by setting up various intervals to handle
- * walking, jumping, movement, and other character states such as being hurt or dead.
- * 
- * The function performs the following actions:
- * 1. Sets up an interval to handle the character's walking animation, executed every 12 milliseconds.
- * 2. Sets up an interval to handle the character's dead state, jumping, movement, and hurt state checks, executed every 150 milliseconds.
- * 3. Sets up a longer interval to stop certain animations after 6000 milliseconds.
- * 
- * Note: Multiple intervals are used to independently control different aspects of the character's animation and state.
- */
+   * Continuously animates the character by setting up various intervals to handle
+   * walking, jumping, movement, and other character states such as being hurt or dead.
+   *
+   * The function performs the following actions:
+   * 1. Sets up an interval to handle the character's walking animation, executed every 12 milliseconds.
+   * 2. Sets up an interval to handle the character's dead state, jumping, movement, and hurt state checks, executed every 150 milliseconds.
+   * 3. Sets up a longer interval to stop certain animations after 6000 milliseconds.
+   *
+   * Note: Multiple intervals are used to independently control different aspects of the character's animation and state.
+   */
   animate() {
     setInterval(() => {
       this.walkingFunctionInterval();
@@ -118,24 +118,28 @@ class Character extends MovableObject {
   }
 
   /**
- * Checks if the object is hurt, and if so, plays the hurt animation.
- * Sets the `endHurt` flag to true after the animation.
- */
+   * Checks if the object is hurt, and if so, plays the hurt animation.
+   * Sets the `endHurt` flag to true after the animation.
+   */
   ifIsHurt() {
     if (this.isHurt()) this.playAnimation(this.IMAGES_HURT);
     this.endHurt = true;
   }
 
   /**
- * Handles character movement based on keyboard input.
- * Moves the character left or right, makes the character jump if spacebar is pressed,
- * and adjusts the camera's x-coordinate to follow the character.
- */
+   * Handles character movement based on keyboard input.
+   * Moves the character left or right, makes the character jump if spacebar is pressed,
+   * and adjusts the camera's x-coordinate to follow the character.
+   */
   walkingFunctionInterval() {
     let endBossPosition = this.world.endboss.x;
     let isMoving = false;
 
-    if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && this.x < endBossPosition) {
+    if (
+      this.world.keyboard.RIGHT &&
+      this.x < this.world.level.level_end_x &&
+      this.x < endBossPosition
+    ) {
       this.moveRight();
       this.otherDirection = false;
       isMoving = true;
@@ -153,24 +157,22 @@ class Character extends MovableObject {
   }
 
   /**
- * Continuously checks if the character is dead and, if so, plays the death animation.
- * Ends the game after 1 second once the death animation starts.
- */
+   * Continuously checks if the character is dead and, if so, plays the death animation.
+   * Ends the game after 1 second once the death animation starts.
+   */
   deadFunctionInterval() {
     setInterval(() => {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
-        setTimeout(() => {
-          endGame();
-        }, 2000);
+        endGame();
       }
     }, 300);
   }
 
   /**
- * Checks for character movement (left or right) and plays the walking animation.
- * Stops the animation if no movement is detected.
- */
+   * Checks for character movement (left or right) and plays the walking animation.
+   * Stops the animation if no movement is detected.
+   */
   checkMovement() {
     if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
       this.playAnimation(this.IMAGES_WALKING);
@@ -181,10 +183,10 @@ class Character extends MovableObject {
   }
 
   /**
- * Handles the jump logic when the spacebar is pressed.
- * Plays the jumping animation while the character is in the air.
- * Resets the jump state when the character is back on the ground.
- */
+   * Handles the jump logic when the spacebar is pressed.
+   * Plays the jumping animation while the character is in the air.
+   * Resets the jump state when the character is back on the ground.
+   */
   checkJump() {
     if (this.world.keyboard.SPACE && !this.isJump && !this.isAboveGround()) {
       this.isJump = true;
@@ -202,16 +204,20 @@ class Character extends MovableObject {
   }
 
   /**
- * Stops any movement-related animations and plays the idle animation if the character is not moving.
- * Plays the sleep animation if the character has been idle for more than 5 seconds.
- */
+   * Stops any movement-related animations and plays the idle animation if the character is not moving.
+   * Plays the sleep animation if the character has been idle for more than 5 seconds.
+   */
   stopAnimation() {
     this.lastAction = new Date().getTime();
     let timePassed = new Date().getTime() - this.lastAction;
     timePassed = timePassed / 1000;
     let isMoving = false;
 
-    if (!isMoving && !this.isJump && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT
+    if (
+      !isMoving &&
+      !this.isJump &&
+      !this.world.keyboard.RIGHT &&
+      !this.world.keyboard.LEFT
     ) {
       this.playAnimation(this.IMAGES_IDLE);
     } else if (timePassed > 5 && isMoving) {
