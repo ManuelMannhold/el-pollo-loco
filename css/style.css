@@ -23,6 +23,10 @@ body {
     overflow: hidden;
 }
 
+h2, p, span {
+    font-family: 'zabras', sans-serif;
+}
+
 h1 {
     font-size: 84px;
     letter-spacing: 3px;
@@ -98,21 +102,32 @@ canvas {
     text-decoration: underline;
 }
 
+/* Ersetze deine .btn Klasse */
 .btn {
-    border-radius: 15px;
+    border-radius: 12px;
     outline: none;
-    border: none;
-    background-color: orange;
-    padding: 10px 80px;
+    border: 3px solid #5d2e06; /* Dunkelbrauner Rand */
+    background: linear-gradient(180deg, #ff9800 0%, #e65100 100%);
+    padding: 12px 60px;
     cursor: pointer;
-    font-family: 'zabras', Arial, Helvetica, sans-serif;
-    font-size: 60px;
+    font-family: 'zabras', Arial, sans-serif;
+    font-size: 48px;
+    color: white;
     letter-spacing: 2px;
+    text-shadow: 2px 2px 0px #5d2e06;
+    box-shadow: 0 6px 0 #5d2e06, 0 8px 15px rgba(0,0,0,0.4);
+    transition: all 0.1s ease;
 }
 
 .btn:hover {
-    background-color: rgb(220, 220, 220);
-    box-shadow: inset 1px 2px 10px black;
+    background: linear-gradient(180deg, #ffb74d 0%, #fb8c00 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0 #5d2e06, 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #5d2e06;
 }
 
 /* <--------------Game settings----------> */
@@ -307,12 +322,27 @@ canvas {
 #steering-buttons-mobile {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end; /* Buttons unten bündig */
     position: absolute;
-    bottom: 0;
-    left: 0;
-    padding-bottom: 10px;
-    border-radius: 15px;
+    bottom: 20px; /* Etwas Abstand vom Rand */
+    width: 100%;
+    padding: 0 30px;
+    pointer-events: none; /* Container selbst klickt nicht */
+}
+
+#steering-buttons-mobile img {
+    width: 70px; /* Feste Größe für bessere Klickbarkeit */
+    height: 70px;
+    opacity: 0.7;
+    pointer-events: auto; /* Nur die Bilder sind klickbar */
+    transition: transform 0.1s, opacity 0.1s;
+    /* Macht die blauen Pfeile orange via CSS-Filter! */
+    filter: sepia(1) saturate(7) hue-rotate(340deg) drop-shadow(2px 2px 2px black);
+}
+
+#steering-buttons-mobile img:active {
+    transform: scale(0.9);
+    opacity: 1;
 }
 
 .steering-left-side {
@@ -370,12 +400,19 @@ canvas {
 }
 
 #aviable-bottles {
-    width: 140px;
-    height: 40px;
     position: absolute;
-    top: 15%;
-    left: 40%;
-    font-size: 24px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid orange;
+    border-radius: 20px;
+    padding: 5px 20px;
+    color: orange;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .canvas-body {
