@@ -1,0 +1,210 @@
+/* UI elements and buttons */
+.btn {
+    border-radius: 25px;
+    outline: none;
+    border: 3px solid #2D3748;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B35 100%);
+    padding: 15px 40px;
+    cursor: pointer;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    color: white;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow:
+        0 8px 0 #8B4513,
+        0 10px 25px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #FFE55C 0%, #FFB347 50%, #FF8C69 100%);
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 0 #8B4513,
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn:active {
+    transform: translateY(5px);
+    box-shadow:
+        0 3px 0 #8B4513,
+        0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#start {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%),
+        url('../img/9_intro_outro_screens/start/startscreen_1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center right -60px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    position: absolute;
+    min-height: 480px;
+    width: 100%;
+    max-width: 720px;
+    border-radius: 20px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    overflow: hidden;
+}
+
+#start::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+        rgba(255, 215, 0, 0.1) 0%,
+        rgba(255, 107, 53, 0.1) 50%,
+        rgba(138, 43, 226, 0.1) 100%);
+    pointer-events: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+#lifebouy-startscreen {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#lifebouy-startscreen img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+#lifebouy-startscreen:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 107, 53, 0.7);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+#lifebouy-startscreen::after {
+    content: 'Rules';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFD700;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+#lifebouy-startscreen:hover::after {
+    opacity: 1;
+}
+
+#button-container-info {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#button-container-info img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+#button-container-info:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 107, 53, 0.7);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+#button-container-info::after {
+    content: 'Imprint';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFD700;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+#button-container-info:hover::after {
+    opacity: 1;
+}

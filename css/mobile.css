@@ -1,0 +1,162 @@
+/* Mobile and responsive styles */
+#steering-buttons-mobile {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.steering-left-side, .steering-right-side {
+    display: flex;
+    gap: 15px;
+    pointer-events: auto;
+}
+
+.steering-left-side img, .steering-right-side img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.2);
+    padding: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.steering-left-side img:hover, .steering-right-side img:hover {
+    transform: scale(1.1);
+    background: rgba(255, 215, 0, 0.4);
+}
+
+.steering-left-side img:active, .steering-right-side img:active {
+    transform: scale(0.95);
+    background: rgba(255, 215, 0, 0.6);
+}
+
+.arrow-right-rotatedZ-270 {
+    transform: rotate(-90deg);
+}
+
+.image-throw-span {
+    transform: rotate(180deg);
+}
+
+#landscape span {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.full-image-background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+#steering-buttons-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    padding: 0 30px;
+    pointer-events: none;
+}
+
+#steering-buttons-mobile img {
+    width: 70px;
+    height: 70px;
+    opacity: 0.7;
+    pointer-events: auto;
+    transition: transform 0.1s, opacity 0.1s;
+    filter: sepia(1) saturate(7) hue-rotate(340deg) drop-shadow(2px 2px 2px black);
+}
+
+#steering-buttons-mobile img:active {
+    transform: scale(0.9);
+    opacity: 1;
+}
+
+.steering-left-side {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 50%;
+    padding-left: 20px;
+}
+
+.steering-right-side {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 50%;
+    padding-right: 20px;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+#imprint {
+    width: 720px;
+    height: 480px;
+    background-color: orange;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-size: 24px;
+    text-shadow: 1px 1px white;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    padding: 24px;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+#imprint h1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 80px;
+}
+
+#close-x {
+    position: sticky;
+    top: 0px;
+    border-radius: 25%;
+    cursor: pointer;
+    width: max-content;
+    margin-left: auto;
+    font-size: 35px;
+    text-shadow: none;
+}
+
+#steering-buttons-mobile img {
+    width: 15%;
+    cursor: pointer;
+}
+
+.image-throw-span {
+    transform: rotate(-60deg);
+}
+
+.arrow-right-rotatedZ-270 {
+    transform: rotateZ(270deg);
+}
+
+.icons-from {
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.icons-from a:hover {
+    color: rgba(0, 0, 0, 0.7);
+}
