@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<html translate="no">
+<html lang="de" translate="no">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +8,8 @@
     <link rel="shortcut icon" href="./img/9_intro_outro_screens/start/startscreen_1.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/media.css">
+    
+    <!-- Scripts (Beibehalten wie im Original) -->
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/character.class.js"></script>
@@ -30,6 +31,7 @@
     <script src="./models/endboss.class.js"></script>
     <script src="./level.js/level1.js"></script>
     <script src="./script.js"></script>
+    
     <style>
         @font-face {
             font-family: 'zabras';
@@ -39,38 +41,57 @@
 </head>
 
 <body>
-    <div class="canvas-body">
-        <canvas id="canvas" width="720" height="480">
-        </canvas>
-        <div id="aviable-bottles"></div>
-        <div id="buttons" class="d-none">
-            <button id="quit-button-game" onclick="quitGame()"></button>
-            <button id="restart" onclick="restartGame()"></button>
-            <button id="mute" class="mute-off" onclick="toggleSoundImage()"></button>
-        </div>
-    </div>
-    </div>
 
-    <div id="steering" class="d-none">
-        <h2>Arrows Left / Right <br> = <br> <span>Walk</span></h2>
-        <h2>Spacebar <br> = <br> <span>Jump</span></h2>
-        <h2>D <br> = <br> <span>Throw Bottle</span></h2>
-    </div>
-    <div id="start">
-        <div class="button-container">
-            <img id="lifebouy-startscreen" src="./img/lifebuoy.png" alt="" onclick="showRules()">
-            <img id="button-container-info" src="./img/info.png" alt="" onclick="openImprint()">
-            <button id="start-button" class="btn" onclick="startGame()">Start</button>
-        </div>
-    </div>
-    <div id="game-rules" class="d-none">
-        <button class="close-gamerules" onclick="closeRules()">X</button>
-        <h2>The fastest way to win!</h2>
-        <p>- To defeat the Small Chicken, you need <span>1</span> bottle or you can jump on its head.</p>
-        <p>- To defeat the Boss, you need <span>5</span> bottles. If you have fewer than <span>5</span> bottles, it's
-            Game Over!</p>
-    </div>
-    <div id="imprint" class="d-none">
+    <div class="game-container">
+        <h1>EL POLLO LOCO</h1>
+
+        <div class="canvas-wrapper">
+            <canvas id="canvas" width="720" height="480"></canvas>
+
+            <!-- In-Game UI Buttons -->
+            <div id="buttons" class="d-none">
+                <button id="mute" class="mute-off" onclick="toggleSoundImage()"></button>
+                <button id="restart" onclick="restartGame()"></button>
+                <button id="quit-button-game" onclick="quitGame()"></button>
+            </div>
+
+            <!-- Start Screen Overlay -->
+            <div id="start">
+                <div class="button-container">
+                    <img id="lifebouy-startscreen" src="img/chili.svg" alt="Rules" onclick="showRules()">
+                    <button id="start-button" class="btn" onclick="startGame()">START GAME</button>
+                    <img id="button-container-info" src="./img/info.png" alt="Info" onclick="openImprint()">
+                </div>
+            </div>
+
+            <!-- Game Rules Overlay -->
+            <div id="game-rules" class="d-none">
+                <button class="close-overlay" onclick="closeRules()">X</button>
+                <h2>DESERT RULES</h2>
+                <div class="rules-content">
+                    <p>Jump on <span>Small Chickens</span> or throw bottles!</p>
+                    <p>Defeat the Boss with <span>5 Bottles</span>.</p>
+                </div>
+            </div>
+
+            <!-- Win/Loss Screens -->
+            <div id="endscreen" class="d-none">
+                <div class="overlay-content">
+                    <button class="btn" onclick="restartGame()">Try Again</button>
+                    <button class="btn btn-secondary" onclick="quitGame()">Menu</button>
+                </div>
+            </div>
+
+            <div id="winscreen" class="d-none">
+                <img src="img/9_intro_outro_screens/win/win_1.png" alt="Winner">
+                <div class="overlay-content">
+                    <button class="btn" onclick="restartGame()">Play Again</button>
+                    <button class="btn btn-secondary" onclick="quitGame()">Menu</button>
+                </div>
+            </div>
+
+            <!-- Imprint Overlay -->
+            <div id="imprint" class="d-none">
         <div id="close-x" onclick="closeImprint()">X</div>
         <div class='impressum'>
             <h4 class="icons-from">Items by: <a href="https://flaticon.com" target="_blank">https://flaticon.com</a>
@@ -151,35 +172,36 @@
                 für Familienrecht</a>
         </div>
     </div>
-    <div id="endscreen" class="d-none">
-        <div class="button-endscreen-container">
-            <button class="btn" onclick="restartGame()">Restart</button>
-            <button class="btn" onclick="quitGame()">Back to Menu</button>
+        </div>
+
+        <!-- Controls Display -->
+        <div id="steering">
+            <div class="control-key"><span>Arrows</span> Walk</div>
+            <div class="control-key"><span>Space</span> Jump</div>
+            <div class="control-key"><span>D</span> Throw</div>
         </div>
     </div>
-    <div id="winscreen" class="d-none">
-        <img src="img/9_intro_outro_screens/win/win_1.png" alt="">
-        <button class="btn" onclick="restartGame()">Restart</button>
-        <button class="btn" onclick="quitGame()">Back to Menu</button>
-    </div>
 
-    <div id="landscape">
-        <span>Please rotate your Device to Play</span>
-        <img src="./img/phone-position-rotation-from-horizontal-to-vertical.png" alt="image rotate phone">
-    </div>
-
+    <!-- Mobile Controls -->
     <div id="steering-buttons-mobile" class="d-none">
         <div class="steering-left-side">
-            <img src="./img/arrow_left.png" alt="" id="btn-left" onmousedown="return false">
-            <img src="./img/arrow_right.png" alt="" id="btn-right" onmousedown="return false">
+            <img src="./img/arrow_left.png" alt="" id="btn-left">
+            <img src="./img/arrow_right.png" alt="" id="btn-right">
         </div>
         <div class="steering-right-side">
-            <img class="image-throw-span" src="./img/arrow_right.png" alt="" id="btn-throw" onmousedown="return false">
-            <img class="arrow-right-rotatedZ-270" src="./img/arrow_right.png" alt="" id="btn-jump"
-                onmousedown="return false">
+            <img src="./img/arrow_right.png" alt="" id="btn-throw" class="image-throw-span">
+            <img src="./img/arrow_right.png" alt="" id="btn-jump" class="arrow-right-rotatedZ-270">
         </div>
     </div>
+
+    <!-- Orientation Warning -->
+    <div id="landscape">
+        <div class="rotate-warning">
+            <span>Please rotate your device</span>
+            <img src="./img/phone-position-rotation-from-horizontal-to-vertical.png" alt="Rotate">
+        </div>
+    </div>
+
     <script src="./js/game.js"></script>
 </body>
-
 </html>
