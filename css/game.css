@@ -43,7 +43,7 @@ canvas {
 
 #aviable-bottles {
     position: absolute;
-    top: 20px;
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.5);
