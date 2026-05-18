@@ -15,7 +15,9 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'zabras', Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-image: url('../img/5_background/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     background-attachment: fixed;
     height: 100dvh;
     overflow: hidden;
